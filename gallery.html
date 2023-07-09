@@ -12,27 +12,18 @@
         <li><a href="index.html">Home</a></li>
         <li class="active"><a href="gallery.html">Artwork</a></li>
         <li><a href="info.html">About</a></li>
-        <li><a href="#">Contact</a></li>
       </ul>
     </nav>
   </header>
   
   <main>
     <section class="gallery">
+      <!-- Dynamically generate the artwork elements using image URLs -->
+      {% for url in image_urls %}
       <div class="artwork">
-        <img src="images/image1.jpg" alt="Artwork 1">
-        <h3>Artwork 1</h3>
-        <p>Description of artwork 1.</p>
+        <img src="{{ url }}" alt="Artwork">
       </div>
-      
-      <div class="artwork">
-        <img src="images/image2.jpg" alt="Artwork 2">
-        <h3>Artwork 2</h3>
-        <p>Description of artwork 2.</p>
-      </div>
-      
-      <!-- Add more 'artwork' divs as needed -->
-      
+      {% endfor %}
     </section>
   </main>
   
