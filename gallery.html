@@ -18,12 +18,13 @@
   
   <main>
     <section class="gallery">
-      <!-- Dynamically generate the artwork elements using image URLs -->
-      {% for url in image_urls %}
       <div class="artwork">
-        <img src="{{ url }}" alt="Artwork">
+        <img src="https://raw.githubusercontent.com/tp-7/Gallery/main/image1.jpg" alt="Artwork 1">
       </div>
-      {% endfor %}
+      <div class="artwork">
+        <img src="https://raw.githubusercontent.com/tp-7/Gallery/main/image2.jpg" alt="Artwork 2">
+      </div>
+      <!-- Add more image URLs as needed -->
     </section>
   </main>
   
