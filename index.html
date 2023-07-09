@@ -2,25 +2,32 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Your Art Showcase - Home</title>
+  <title>Welcome to Pinocchio</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li class="active"><a href="index.html">Home</a></li>
-        <li><a href="gallery.html">Artwork</a></li>
-        <li><a href="info.html">About</a></li>
-        <li><a href="#">Contact</a></li>
+        <li {% if page.url == '/' %}class="active"{% endif %}><a href="index.html">Home</a></li>
+        <li {% if page.url == '/gallery.html' %}class="active"{% endif %}><a href="gallery.html">Artwork</a></li>
+        <li {% if page.url == '/info.html' %}class="active"{% endif %}><a href="info.html">About</a></li>
       </ul>
     </nav>
   </header>
   
   <main>
     <section class="hero">
-      <h1>Welcome to Your Art Showcase</h1>
-      <p>Showcasing captivating artwork for the NFT and crypto community.</p>
+      <h1>Welcome to Pinocchio</h1>
+      <p>Your Art Showcase</p>
+    </section>
+    
+    <section class="links">
+      <h2>Explore Pinocchio</h2>
+      <ul>
+        <li><a href="gallery.html">View Artwork</a></li>
+        <li><a href="info.html">About the Showcase</a></li>
+      </ul>
     </section>
   </main>
   
