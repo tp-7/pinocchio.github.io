@@ -4,14 +4,51 @@
   <meta charset="UTF-8">
   <title>Welcome to Pinocchio</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    body {
+      background-color: #eef7f0;
+    }
+    
+    .hero {
+      text-align: center;
+      padding: 100px 0;
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      color: #2a6629;
+      margin-bottom: 20px;
+    }
+    
+    .hero p {
+      font-size: 24px;
+      color: #336633;
+      margin-bottom: 40px;
+    }
+    
+    .links {
+      text-align: center;
+    }
+    
+    .links a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 10px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
   <header>
     <nav>
       <ul>
-        <li {% if page.url == '/' %}class="active"{% endif %}><a href="index.html">Home</a></li>
-        <li {% if page.url == '/gallery.html' %}class="active"{% endif %}><a href="gallery.html">Artwork</a></li>
-        <li {% if page.url == '/info.html' %}class="active"{% endif %}><a href="info.html">About</a></li>
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="gallery.html">Artwork</a></li>
+        <li><a href="info.html">About</a></li>
       </ul>
     </nav>
   </header>
@@ -24,10 +61,8 @@
     
     <section class="links">
       <h2>Explore Pinocchio</h2>
-      <ul>
-        <li><a href="gallery.html">View Artwork</a></li>
-        <li><a href="info.html">About the Showcase</a></li>
-      </ul>
+      <a href="gallery.html">View Artwork</a>
+      <a href="info.html">About the Showcase</a>
     </section>
   </main>
   
