@@ -17,8 +17,32 @@
     
     header h1 {
       color: #fff;
-      font-size: 32px;
+      font-size: 30px;
       margin: 0;
+    }
+    
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    nav ul li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      transition: background-color 0.3s ease;
+      font-size: 20px;
+    }
+    
+    nav ul li a:hover {
+      background-color: #4caf50;
     }
     
     .gallery {
@@ -50,17 +74,13 @@
     <nav>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="gallery.html">Artwork</a></li>
+        <li><a href="gallery.html">View Artwork</a></li>
         <li><a href="info.html">About</a></li>
       </ul>
     </nav>
   </header>
   
   <div class="gallery"></div>
-  
-  <footer>
-    <p>&copy; 2023. All rights reserved.</p>
-  </footer>
 
   <script>
     // Fetch the image URLs from the GitHub repository
