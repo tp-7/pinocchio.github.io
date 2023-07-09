@@ -82,39 +82,32 @@
   
   <div class="gallery"></div>
 
-  <script>
-    // Fetch the image URLs from the GitHub repository
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const galleryContainer = document.querySelector('.gallery');
+
     fetch('https://api.github.com/repos/tp-7/Gallery/contents')
       .then(response => response.json())
       .then(data => {
-        const galleryContainer = document.querySelector('.gallery');
-        
-        // Iterate through the fetched data and generate the gallery items
         data.forEach(item => {
-          if (item.type === 'file') {
-            const imageUrl = item.download_url;
-            const imageAlt = item.name;
-            const imageDescription = ''; // Add your image descriptions here
+          if (item.type === 'file' && item.name.match(/\.(png|jpe?g|gif)$/)) {
+            const imgElement = document.createElement('img');
+            imgElement.src = item.download_url;
+            imgElement.alt = 'Artwork';
             
             const galleryItem = document.createElement('div');
             galleryItem.className = 'gallery-item';
-            
-            const imageElement = document.createElement('img');
-            imageElement.src = imageUrl;
-            imageElement.alt = imageAlt;
-            
-            const descriptionElement = document.createElement('div');
-            descriptionElement.className = 'description';
-            descriptionElement.textContent = imageDescription;
-            
-            galleryItem.appendChild(imageElement);
-            galleryItem.appendChild(descriptionElement);
+            galleryItem.appendChild(imgElement);
             
             galleryContainer.appendChild(galleryItem);
           }
         });
       })
-      .catch(error => console.error(error));
-  </script>
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  });
+</script>
+
 </body>
 </html>
