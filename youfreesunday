@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing Text Page</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .glow-button {
+            display: inline-block;
+            padding: 25px 50px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background-color: black;
+            border: 2px solid white;
+            text-align: center;
+            text-decoration: none;
+            text-shadow: 0 0 10px white;
+            transition: transform 0.2s;
+            margin: 10px;
+        }
+
+        .glow-button:hover {
+            transform: scale(1.1);
+        }
+
+        .white-rectangle {
+            padding: 20px;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="white-rectangle">
+        <p style="font-size: 26px; color: black; text-align: center;">
+            Hello Jay! Hope you've been having a killer week!! You free Sunday to chat?
+        </p>
+    </div>
+    <div>
+        <a href="#" class="glow-button">
+            I'm totally available Sunday:-]
+        </a>
+        <a href="#" class="glow-button">
+            sorry m8 my in-laws are coming into town
+        </a>
+    </div>
+</body>
+</html>
