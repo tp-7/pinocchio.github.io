@@ -81,9 +81,10 @@
         </a>
     </div>
 
-    <script>
-        function changeButton(button) {
-            button.classList.add("clicked");
+ <script>
+    function changeButton(button) {
+        // Prevent the default behavior of the anchor link
+        event.preventDefault();
 
             if (button.id === "button1") {
                 button.textContent = Let's go !! :D";
