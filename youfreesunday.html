@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glowing Text and Firework Background</title>
+    <title>Glowing Text & Firework Page</title>
     <style>
         body {
             background-color: black;
@@ -34,10 +34,6 @@
             transform: scale(1.1);
         }
 
-        .glow-button.clicked {
-            background-color: green;
-        }
-
         .white-rectangle {
             padding: 20px;
             background-color: white;
@@ -45,8 +41,8 @@
 
         .firework {
             position: fixed;
-            width: 8px;
-            height: 8px;
+            width: 800px; /* Increased size by 100x */
+            height: 800px; /* Increased size by 100x */
             background-color: #ffdb58;
             border-radius: 50%;
             opacity: 0;
@@ -73,37 +69,46 @@
         </p>
     </div>
     <div>
-        <a href="#" class="glow-button" id="button1" onclick="changeButton(this)">
+        <button class="glow-button" id="button1" onclick="changeButton(this)">
             I'm totally available Sunday:-]
-        </a>
-        <a href="#" class="glow-button" id="button2" onclick="changeButton(this)">
+        </button>
+        <button class="glow-button" id="button2" onclick="changeButton(this)">
             sorry m8 my in-laws are coming into town
-        </a>
+        </button>
     </div>
 
- <script>
-    function changeButton(button) {
-        // Prevent the default behavior of the anchor link
-        event.preventDefault();
-
-            if (button.id === "button1") {
-                button.textContent = Let's go !! :D";
-            } else if (button.id === "button2") {
-                button.textContent = "I understand, familiy comes first. Tell uncle Larry i said hi!";
-            }
-
-            button.removeEventListener("click", changeButton);
+    <script>
+        function changeButton(button) {
+            // Prevent the default behavior of the button click
+            event.preventDefault();
 
             // Add the firework effect
             const firework = document.createElement("div");
             firework.classList.add("firework");
             firework.style.top = event.clientY + "px";
             firework.style.left = event.clientX + "px";
+            firework.style.backgroundColor = getRandomColor(); // Set random background color
             document.body.appendChild(firework);
 
             setTimeout(() => {
                 firework.remove();
             }, 2000);
+
+            // Additional text changes
+            if (button.id === "button1") {
+                button.textContent = "Let's go !! :D";
+            } else if (button.id === "button2") {
+                button.textContent = "I understand, family comes first. Tell uncle Larry I said hi!";
+            }
+        }
+
+        function getRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
         }
     </script>
 </body>
