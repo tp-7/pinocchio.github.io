@@ -34,6 +34,10 @@
             transform: scale(1.1);
         }
 
+        .glow-button.clicked {
+            background-color: green;
+        }
+
         .white-rectangle {
             padding: 20px;
             background-color: white;
@@ -47,12 +51,26 @@
         </p>
     </div>
     <div>
-        <a href="#" class="glow-button">
+        <a href="#" class="glow-button" id="button1" onclick="changeButton(this)">
             I'm totally available Sunday:-]
         </a>
-        <a href="#" class="glow-button">
+        <a href="#" class="glow-button" id="button2" onclick="changeButton(this)">
             sorry m8 my in-laws are coming into town
         </a>
     </div>
+
+    <script>
+        function changeButton(button) {
+            button.classList.add("clicked");
+
+            if (button.id === "button1") {
+                button.textContent = "Let's go !! :D";
+            } else if (button.id === "button2") {
+                button.textContent = "I understand, family comes first. Tell uncle Larry i said hello!";
+            }
+
+            button.removeEventListener("click", changeButton);
+        }
+    </script>
 </body>
 </html>
