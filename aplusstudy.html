@@ -2,6 +2,11 @@
 <html>
 <head>
     <title>CompTIA A+ Certification Quiz</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+	
+
+
    <style>
     body {
         background-color: green;
@@ -82,7 +87,17 @@
             color: purple; /* Change to purple at 75% */
         }
     }
-</style>
+
+    #confetti-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        pointer-events: none;
+ 	   }
+	</style>
 
 </head>
 <body>
@@ -97,22 +112,8 @@
     <button class="btn" id="next">Next</button> <!-- Removed the "Submit" button -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	<div id="confetti-container"></div>
 
 
     <script>
@@ -225,58 +226,107 @@ const quizData = [
 
 
         // Function to shuffle the quiz data array
-    function shuffleQuizData() {
-        for (let i = quizData.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [quizData[i], quizData[j]] = [quizData[j], quizData[i]];
-        }
+function shuffleQuizData() {
+    for (let i = quizData.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [quizData[i], quizData[j]] = [quizData[j], quizData[i]];
     }
+}
 
-    // Function to load a new question
-    function loadQuestion() {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < quizData.length) {
-            const currentQuestion = quizData[currentQuestionIndex];
-            document.getElementById("question").textContent = currentQuestion.question;
-            const choices = currentQuestion.choices.slice(); // Make a copy to shuffle
-            for (let i = 0; i < 4; i++) {
-                document.getElementById("choice" + (i + 1)).textContent = choices[i];
-                document.getElementById("choice" + (i + 1)).classList.remove("correct", "incorrect");
-            }
-        } else {
-            alert("Quiz completed!");
-        }
-    }
-
-    // Function to check the selected answer
-    function checkAnswer(selectedChoice) {
+// Function to load a new question
+function loadQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizData.length) {
         const currentQuestion = quizData[currentQuestionIndex];
-        if (selectedChoice === currentQuestion.correctAnswer) {
-            document.getElementById("choice" + (selectedChoice + 1)).classList.add("correct");
-        } else {
-            document.getElementById("choice" + (selectedChoice + 1)).classList.add("incorrect");
+        document.getElementById("question").textContent = currentQuestion.question;
+        const choices = currentQuestion.choices.slice(); // Make a copy to shuffle
+        for (let i = 0; i < 4; i++) {
+            document.getElementById("choice" + (i + 1)).textContent = choices[i];
+            document.getElementById("choice" + (i + 1)).classList.remove("correct", "incorrect");
         }
+    } else {
+        alert("Quiz completed!");
     }
+}
 
-    // Event listeners for choice buttons
-    for (let i = 0; i < 4; i++) {
-        document.getElementById("choice" + (i + 1)).addEventListener("click", () => {
-            checkAnswer(i);
-        });
+// Function to check the selected answer
+function checkAnswer(selectedChoice) {
+    const currentQuestion = quizData[currentQuestionIndex];
+    const choiceButton = document.getElementById("choice" + (selectedChoice + 1));
+    if (selectedChoice === currentQuestion.correctAnswer) {
+        choiceButton.classList.add("correct");
+        // Trigger confetti effect when the correct answer is chosen
+        document.getElementById("confetti-container").style.display = "block"; // Show confetti
+        setTimeout(() => {
+            document.getElementById("confetti-container").style.display = "none"; // Hide confetti after 3 seconds
+        }, 1500);
+    } else {
+        choiceButton.classList.add("incorrect");
     }
+}
 
-    // Event listener for the "Next" button
-    document.getElementById("next").addEventListener("click", () => {
-        loadQuestion();
+
+
+// Event listeners for choice buttons
+for (let i = 0; i < 4; i++) {
+    document.getElementById("choice" + (i + 1)).addEventListener("click", () => {
+        checkAnswer(i);
     });
+}
 
-    // Shuffle the quiz data before starting the quiz
-    shuffleQuizData();
-
-    // Load the initial question
-    let currentQuestionIndex = -1;
+// Event listener for the "Next" button
+document.getElementById("next").addEventListener("click", () => {
     loadQuestion();
-</script>
+});
+
+// Shuffle the quiz data before starting the quiz
+shuffleQuizData();
+
+// Load the initial question
+let currentQuestionIndex = -1;
+loadQuestion();
+
+
+// Initialize the confetti effect
+function initConfetti() {
+    particlesJS("confetti-container", {
+        particles: {
+            number: {
+                value: 100,
+            },
+            color: {
+                value: ["#FFD700", "#FF4500", "#008000", "#1E90FF"],
+            },
+            shape: {
+                type: "circle", // You can change this to "image" or other shapes if needed
+            },
+            size: {
+                value: 8,
+            },
+            move: {
+                direction: "bottom",
+                out_mode: "out",
+            },
+            line_linked: {
+                enable: false, // Disable lines between particles
+            },
+            interactivity: {
+                events: {
+                    onhover: {
+                        enable: false,
+                    },
+                },
+            },
+        },
+    });
+    document.getElementById("confetti-container").style.display = "none"; // Hide confetti initially
+}
+
+
+// Event listener to initialize confetti after DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+    initConfetti();
+});
 
     </script>
 </body>
