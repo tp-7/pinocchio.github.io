@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CompTIA A+ Certification Quiz</title>
+   <style>
+    body {
+        background-color: green;
+        color: black;
+        text-align: center;
+        font-size: 18px;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .question {
+        font-size: 72px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        padding: 10px;
+        border: 4px solid rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        margin-bottom: 20px; /* Increase margin to separate from buttons */
+        animation: colorChange 8s infinite;
+    }
+
+    /* Updated styles for the buttons */
+    .button-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Create a 2x2 grid */
+        gap: 10px; /* Adjust the gap between buttons as needed */
+    }
+
+    .btn {
+        padding: 20px 40px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 50px;
+        border-radius: 50px; /* Add border-radius to make the buttons oval-shaped */
+    }
+
+    .correct {
+        background-color: #28a745;
+    }
+
+    .incorrect {
+        background-color: #dc3545;
+    }
+
+    /* Style for the "Next" button */
+    #next {
+        padding: 40px 80px; /* Increased size */
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 48px;
+        border-radius: 50px; /* Add border-radius to make the button oval-shaped */
+        transition: background-color 0.3s; /* Add a color change transition */
+    }
+
+    #next:hover {
+        background-color: #00FF00; /* Change to green on hover */
+    }
+
+    @keyframes colorChange {
+        0%, 100% {
+            color: red; /* Start and end with red color */
+        }
+        25% {
+            color: blue; /* Change to blue at 25% */
+        }
+        50% {
+            color: yellow; /* Change to yellow at 50% */
+        }
+        75% {
+            color: purple; /* Change to purple at 75% */
+        }
+    }
+</style>
+
+</head>
+<body>
+    <div class="question" id="question">Question goes here...</div>
+    <div class="button-container">
+        <button class="btn" id="choice1">Choice 1</button>
+        <button class="btn" id="choice2">Choice 2</button>
+        <button class="btn" id="choice3">Choice 3</button>
+        <button class="btn" id="choice4">Choice 4</button>
+    </div>
+    <br>
+    <button class="btn" id="next">Next</button> <!-- Removed the "Submit" button -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+       // Define an array of questions and answers
+const quizData = [
+    {
+        question: "What is the primary purpose of a CPU fan?",
+        choices: [
+            "A) To power the CPU",
+            "B) To provide an internet connection",
+            "C) To cool the CPU",
+            "D) To store data"
+        ],
+        correctAnswer: 2 // Index of the correct answer in choices array (C)
+    },
+    {
+        question: "Which networking standard operates in the 2.4 GHz frequency range?",
+        choices: [
+            "A) IEEE 802.11ac",
+            "B) IEEE 802.11n",
+            "C) IEEE 802.11g",
+            "D) IEEE 802.11a"
+        ],
+        correctAnswer: 2 // Index of the correct answer in choices array (C)
+    },
+    {
+        question: "What type of connector is commonly used for analog video output?",
+        choices: [
+            "A) HDMI",
+            "B) VGA",
+            "C) USB",
+            "D) DisplayPort"
+        ],
+        correctAnswer: 1 // Index of the correct answer in choices array (B)
+    },
+    {
+        question: "Which type of RAM is characterized by its volatile memory and must be constantly refreshed?",
+        choices: [
+            "A) DDR2",
+            "B) DDR3",
+            "C) DDR4",
+            "D) DRAM"
+        ],
+        correctAnswer: 3 // Index of the correct answer in choices array (D)
+    },
+    {
+        question: "What is the purpose of a DHCP server in a network?",
+        choices: [
+            "A) To assign IP addresses automatically",
+            "B) To protect against viruses",
+            "C) To control network access",
+            "D) To filter web content"
+        ],
+        correctAnswer: 0 // Index of the correct answer in choices array (A)
+    },
+    {
+        question: "What Windows utility can be used to create and manage hard drive partitions?",
+        choices: [
+            "A) Disk Cleanup",
+            "B) Device Manager",
+            "C) Disk Management",
+            "D) Task Manager"
+        ],
+        correctAnswer: 2 // Index of the correct answer in choices array (C)
+    },
+    {
+        question: "What is the primary purpose of a firewall in network security?",
+        choices: [
+            "A) To monitor and control incoming and outgoing network traffic",
+            "B) To improve internet speed",
+            "C) To encrypt data transmissions",
+            "D) To manage printer connections"
+        ],
+        correctAnswer: 0 // Index of the correct answer in choices array (A)
+    },
+    {
+        question: "Which encryption protocol is commonly used to secure wireless networks?",
+        choices: [
+            "A) WEP",
+            "B) WPA",
+            "C) SSL",
+            "D) TLS"
+        ],
+        correctAnswer: 1 // Index of the correct answer in choices array (B)
+    },
+    {
+        question: "What is the function of an anti-malware program?",
+        choices: [
+            "A) To organize files and folders",
+            "B) To create strong passwords",
+            "C) To detect and remove malicious software",
+            "D) To manage system updates"
+        ],
+        correctAnswer: 2 // Index of the correct answer in choices array (C)
+    },
+    {
+        question: "Which Windows feature allows you to roll back your system to a previous state?",
+        choices: [
+            "A) System Restore",
+            "B) Disk Cleanup",
+            "C) Windows Update",
+            "D) Task Scheduler"
+        ],
+        correctAnswer: 0 // Index of the correct answer in choices array (A)
+    }
+    // Add more questions here...
+];
+
+
+        // Function to shuffle the quiz data array
+    function shuffleQuizData() {
+        for (let i = quizData.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [quizData[i], quizData[j]] = [quizData[j], quizData[i]];
+        }
+    }
+
+    // Function to load a new question
+    function loadQuestion() {
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizData.length) {
+            const currentQuestion = quizData[currentQuestionIndex];
+            document.getElementById("question").textContent = currentQuestion.question;
+            const choices = currentQuestion.choices.slice(); // Make a copy to shuffle
+            for (let i = 0; i < 4; i++) {
+                document.getElementById("choice" + (i + 1)).textContent = choices[i];
+                document.getElementById("choice" + (i + 1)).classList.remove("correct", "incorrect");
+            }
+        } else {
+            alert("Quiz completed!");
+        }
+    }
+
+    // Function to check the selected answer
+    function checkAnswer(selectedChoice) {
+        const currentQuestion = quizData[currentQuestionIndex];
+        if (selectedChoice === currentQuestion.correctAnswer) {
+            document.getElementById("choice" + (selectedChoice + 1)).classList.add("correct");
+        } else {
+            document.getElementById("choice" + (selectedChoice + 1)).classList.add("incorrect");
+        }
+    }
+
+    // Event listeners for choice buttons
+    for (let i = 0; i < 4; i++) {
+        document.getElementById("choice" + (i + 1)).addEventListener("click", () => {
+            checkAnswer(i);
+        });
+    }
+
+    // Event listener for the "Next" button
+    document.getElementById("next").addEventListener("click", () => {
+        loadQuestion();
+    });
+
+    // Shuffle the quiz data before starting the quiz
+    shuffleQuizData();
+
+    // Load the initial question
+    let currentQuestionIndex = -1;
+    loadQuestion();
+</script>
+
+    </script>
+</body>
+</html>
