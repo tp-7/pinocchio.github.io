@@ -259,11 +259,12 @@ function checkAnswer(selectedChoice) {
         document.getElementById("confetti-container").style.display = "block"; // Show confetti
         setTimeout(() => {
             document.getElementById("confetti-container").style.display = "none"; // Hide confetti after 3 seconds
-        }, 1500);
+        }, 2000); // Adjust the time here as needed (2 seconds in this case)
     } else {
         choiceButton.classList.add("incorrect");
     }
 }
+
 
 
 
