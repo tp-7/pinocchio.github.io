@@ -1,375 +1,365 @@
-{\rtf1\ansi\ansicpg1252\cocoartf2709
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\margl1440\margr1440\vieww33400\viewh18400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CompTIA A+ Certification Quiz</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
+	
 
-\f0\fs24 \cf0 <!DOCTYPE html>\
-<html>\
-<head>\
-    <title>CompTIA A+ Certification Quiz</title>\
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>\
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>\
-	\
-\
-\
-   <style>\
-    body \{\
-        background-color: green;\
-        color: black;\
-        text-align: center;\
-        font-size: 18px;\
-        font-family: Arial, sans-serif;\
-        height: 100vh;\
-        display: flex;\
-        flex-direction: column;\
-        justify-content: center;\
-        align-items: center;\
-    \}\
-\
-    .question \{\
-        font-size: 72px;\
-        font-family: 'Times New Roman', Times, serif;\
-        font-weight: bold;\
-        padding: 10px;\
-        border: 4px solid rgba(255, 255, 255, 0.5);\
-        border-radius: 10px;\
-        margin-bottom: 20px; /* Increase margin to separate from buttons */\
-        animation: colorChange 8s infinite;\
-    \}\
-\
-    /* Updated styles for the buttons */\
-    .button-container \{\
-        display: grid;\
-        grid-template-columns: repeat(2, 1fr); /* Create a 2x2 grid */\
-        gap: 10px; /* Adjust the gap between buttons as needed */\
-    \}\
-\
-    .btn \{\
-        padding: 40px 80px;\
-        background-color: #007BFF;\
-        color: white;\
-        border: none;\
-        cursor: pointer;\
-        font-size: 50px;\
-        border-radius: 50px; /* Add border-radius to make the buttons oval-shaped */\
-    \}\
-\
-    .correct \{\
-        background-color: #28a745;\
-    \}\
-\
-    .incorrect \{\
-        background-color: #dc3545;\
-    \}\
-\
-    /* Style for the "Next" button */\
-    #next \{\
-        padding: 40px 80px; /* Increased size */\
-        background-color: red;\
-        color: white;\
-        border: none;\
-        cursor: pointer;\
-        font-size: 48px;\
-        border-radius: 50px; /* Add border-radius to make the button oval-shaped */\
-        transition: background-color 0.3s; /* Add a color change transition */\
-    \}\
-\
-    #next:hover \{\
-        background-color: #00FF00; /* Change to green on hover */\
-    \}\
-\
-    @keyframes colorChange \{\
-        0%, 100% \{\
-            color: red; /* Start and end with red color */\
-        \}\
-        25% \{\
-            color: blue; /* Change to blue at 25% */\
-        \}\
-        50% \{\
-            color: yellow; /* Change to yellow at 50% */\
-        \}\
-        75% \{\
-            color: purple; /* Change to purple at 75% */\
-        \}\
-    \}\
-\
-    #confetti-container \{\
-        position: fixed;\
-        top: 0;\
-        left: 0;\
-        width: 100%;\
-        height: 100%;\
-        z-index: 1000;\
-        pointer-events: none;\
- 	   \}\
-	</style>\
-\
-</head>\
-<body>\
-    <div class="question" id="question">Question goes here...</div>\
-    <div class="button-container">\
-        <button class="btn" id="choice1">Choice 1</button>\
-        <button class="btn" id="choice2">Choice 2</button>\
-        <button class="btn" id="choice3">Choice 3</button>\
-        <button class="btn" id="choice4">Choice 4</button>\
-    </div>\
-    <br>\
-    <button class="btn" id="next">Next</button> <!-- Removed the "Submit" button -->\
-\
-.description \{\
-    font-size: 18px;\
-    margin-top: 20px; /* Adjust margin as needed */\
-    display: none; /* Initially hide the description */\
-\}\
-\
-	\
-	<div id="confetti-container"></div>\
-\
-\
-    <script>\
-\
-\
-       // Define an array of questions and answers\
-const quizData = [\
-   \{\
-    question: "What is the primary purpose of a CPU fan?",\
-    choices: [\
-        "A) To power the CPU",\
-        "B) To provide an internet connection",\
-        "C) To cool the CPU",\
-        "D) To store data"\
-    ],\
-    correctAnswer: 2, // Index of the correct answer in choices array (C)\
-    description: "The primary purpose of a CPU fan is to cool the CPU by dissipating heat generated during operation. This helps prevent overheating and ensures the CPU functions optimally."\
-\},\
-\
-    \{\
-        question: "Which networking standard operates in the 2.4 GHz frequency range?",\
-        choices: [\
-            "A) IEEE 802.11ac",\
-            "B) IEEE 802.11n",\
-            "C) IEEE 802.11g",\
-            "D) IEEE 802.11a"\
-        ],\
-        correctAnswer: 2 // Index of the correct answer in choices array (C)\
-    \},\
-    \{\
-        question: "What type of connector is commonly used for analog video output?",\
-        choices: [\
-            "A) HDMI",\
-            "B) VGA",\
-            "C) USB",\
-            "D) DisplayPort"\
-        ],\
-        correctAnswer: 1 // Index of the correct answer in choices array (B)\
-    \},\
-    \{\
-        question: "Which type of RAM is characterized by its volatile memory and must be constantly refreshed?",\
-        choices: [\
-            "A) DDR2",\
-            "B) DDR3",\
-            "C) DDR4",\
-            "D) DRAM"\
-        ],\
-        correctAnswer: 3 // Index of the correct answer in choices array (D)\
-    \},\
-    \{\
-        question: "What is the purpose of a DHCP server in a network?",\
-        choices: [\
-            "A) To assign IP addresses automatically",\
-            "B) To protect against viruses",\
-            "C) To control network access",\
-            "D) To filter web content"\
-        ],\
-        correctAnswer: 0 // Index of the correct answer in choices array (A)\
-    \},\
-    \{\
-        question: "What Windows utility can be used to create and manage hard drive partitions?",\
-        choices: [\
-            "A) Disk Cleanup",\
-            "B) Device Manager",\
-            "C) Disk Management",\
-            "D) Task Manager"\
-        ],\
-        correctAnswer: 2 // Index of the correct answer in choices array (C)\
-    \},\
-    \{\
-        question: "What is the primary purpose of a firewall in network security?",\
-        choices: [\
-            "A) To monitor and control incoming and outgoing network traffic",\
-            "B) To improve internet speed",\
-            "C) To encrypt data transmissions",\
-            "D) To manage printer connections"\
-        ],\
-        correctAnswer: 0 // Index of the correct answer in choices array (A)\
-    \},\
-    \{\
-        question: "Which encryption protocol is commonly used to secure wireless networks?",\
-        choices: [\
-            "A) WEP",\
-            "B) WPA",\
-            "C) SSL",\
-            "D) TLS"\
-        ],\
-        correctAnswer: 1 // Index of the correct answer in choices array (B)\
-    \},\
-    \{\
-        question: "What is the function of an anti-malware program?",\
-        choices: [\
-            "A) To organize files and folders",\
-            "B) To create strong passwords",\
-            "C) To detect and remove malicious software",\
-            "D) To manage system updates"\
-        ],\
-        correctAnswer: 2 // Index of the correct answer in choices array (C)\
-    \},\
-    \{\
-        question: "Which Windows feature allows you to roll back your system to a previous state?",\
-        choices: [\
-            "A) System Restore",\
-            "B) Disk Cleanup",\
-            "C) Windows Update",\
-            "D) Task Scheduler"\
-        ],\
-        correctAnswer: 0 // Index of the correct answer in choices array (A)\
-    \}\
-    // Add more questions here...\
-];\
-\
-\
-        // Function to shuffle the quiz data array\
-function shuffleQuizData() \{\
-    for (let i = quizData.length - 1; i > 0; i--) \{\
-        const j = Math.floor(Math.random() * (i + 1));\
-        [quizData[i], quizData[j]] = [quizData[j], quizData[i]];\
-    \}\
-\}\
-\
-// Function to load a new question\
-function loadQuestion() \{\
-    currentQuestionIndex++;\
-    if (currentQuestionIndex < quizData.length) \{\
-        const currentQuestion = quizData[currentQuestionIndex];\
-        document.getElementById("question").textContent = currentQuestion.question;\
-        const choices = currentQuestion.choices.slice(); // Make a copy to shuffle\
-        for (let i = 0; i < 4; i++) \{\
-            document.getElementById("choice" + (i + 1)).textContent = choices[i];\
-            document.getElementById("choice" + (i + 1)).classList.remove("correct", "incorrect");\
-        \}\
-    \} else \{\
-        alert("Quiz completed!");\
-    \}\
-\}\
-\
-// Function to check the selected answer\
-function checkAnswer(selectedChoice) \{\
-    const currentQuestion = quizData[currentQuestionIndex];\
-    const choiceButton = document.getElementById("choice" + (selectedChoice + 1));\
-    const descriptionDiv = document.getElementById("description");\
-    \
-    if (selectedChoice === currentQuestion.correctAnswer) \{\
-        choiceButton.classList.add("correct");\
-        \
-        // Display the correct answer description\
-        descriptionDiv.textContent = "Correct! Here's why: [Add your explanation here.]";\
-        descriptionDiv.style.color = "#28a745"; // Optional: Change text color to green\
-    \} else \{\
-        choiceButton.classList.add("incorrect");\
-        \
-        // Display the correct answer description\
-        descriptionDiv.textContent = "Incorrect. The correct answer is: [Add the correct answer explanation here.]";\
-        descriptionDiv.style.color = "#dc3545"; // Optional: Change text color to red\
-    \}\
-    \
-    // Show the description\
-    descriptionDiv.style.display = "block";\
-    \
-    // Trigger confetti effect when the correct answer is chosen\
-    document.getElementById("confetti-container").style.display = "block"; // Show confetti\
-    setTimeout(() => \{\
-        document.getElementById("confetti-container").style.display = "none"; // Hide confetti after 3 seconds\
-    \}, 3000); // Adjust the time here as needed (3 seconds in this case)\
-\}\
-\
-\
-\
-\
-\
-// Event listeners for choice buttons\
-for (let i = 0; i < 4; i++) \{\
-    document.getElementById("choice" + (i + 1)).addEventListener("click", () => \{\
-        checkAnswer(i);\
-    \});\
-\}\
-\
-<div class="description" id="description"></div>\
-\
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 // Initialize the confetti effect\
-function initConfetti() \{\
-    particlesJS("confetti-container", \{\
-        particles: \{\
-            number: \{\
-                value: 100,\
-            \},\
-            color: \{\
-                value: ["#FFD700", "#FF4500", "#008000", "#1E90FF"],\
-            \},\
-            shape: \{\
-                type: "circle", // You can change this to "image" or other shapes if needed\
-            \},\
-            size: \{\
-                value: 8,\
-            \},\
-            move: \{\
-                direction: "bottom",\
-                out_mode: "out",\
-            \},\
-            line_linked: \{\
-                enable: false, // Disable lines between particles\
-            \},\
-            interactivity: \{\
-                events: \{\
-                    onhover: \{\
-                        enable: false,\
-                    \},\
-                \},\
-            \},\
-        \},\
-    \});\
-    document.getElementById("confetti-container").style.display = "none"; // Hide confetti initially\
-\}\
-\
-\
-// Event listener to initialize confetti after DOM is loaded\
-document.addEventListener("DOMContentLoaded", function () \{\
-    initConfetti();\
-\});\
-\pard\pardeftab720\partightenfactor0
-\cf0 \
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
-\cf0 \
-// Event listener for the "Next" button\
-document.getElementById("next").addEventListener("click", () => \{\
-    // Hide the description\
-    document.getElementById("description").style.display = "none";\
-    \
-    // Load the next question\
-    loadQuestion();\
-\});\
-\
-\
-// Shuffle the quiz data before starting the quiz\
-shuffleQuizData();\
-\
-// Load the initial question\
-let currentQuestionIndex = -1;\
-loadQuestion();\
-\
-\
-\
-    </script>\
-</body>\
-</html>}
+
+   <style>
+    body {
+        background-color: green;
+        color: black;
+        text-align: center;
+        font-size: 18px;
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .question {
+        font-size: 72px;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        padding: 10px;
+        border: 4px solid rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        margin-bottom: 20px; /* Increase margin to separate from buttons */
+        animation: colorChange 8s infinite;
+    }
+
+    /* Updated styles for the buttons */
+    .button-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Create a 2x2 grid */
+        gap: 10px; /* Adjust the gap between buttons as needed */
+    }
+
+    .btn {
+        padding: 40px 80px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 50px;
+        border-radius: 50px; /* Add border-radius to make the buttons oval-shaped */
+    }
+
+    .correct {
+        background-color: #28a745;
+    }
+
+    .incorrect {
+        background-color: #dc3545;
+    }
+
+    /* Style for the "Next" button */
+    #next {
+        padding: 40px 80px; /* Increased size */
+        background-color: red;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 48px;
+        border-radius: 50px; /* Add border-radius to make the button oval-shaped */
+        transition: background-color 0.3s; /* Add a color change transition */
+    }
+
+    #next:hover {
+        background-color: #00FF00; /* Change to green on hover */
+    }
+
+    @keyframes colorChange {
+        0%, 100% {
+            color: red; /* Start and end with red color */
+        }
+        25% {
+            color: blue; /* Change to blue at 25% */
+        }
+        50% {
+            color: yellow; /* Change to yellow at 50% */
+        }
+        75% {
+            color: purple; /* Change to purple at 75% */
+        }
+    }
+
+    #confetti-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        pointer-events: none;
+ 	   }
+	</style>
+
+</head>
+<body>
+    <div class="question" id="question">Question goes here...</div>
+    <div class="button-container">
+        <button class="btn" id="choice1">Choice 1</button>
+        <button class="btn" id="choice2">Choice 2</button>
+        <button class="btn" id="choice3">Choice 3</button>
+        <button class="btn" id="choice4">Choice 4</button>
+    </div>
+    <br>
+    <button class="btn" id="next">Next</button> <!-- Removed the "Submit" button -->
+
+.description {
+    font-size: 18px;
+    margin-top: 20px; /* Adjust margin as needed */
+    display: none; /* Initially hide the description */
+}
+
+	
+	<div id="confetti-container"></div>
+
+
+    <script>
+
+
+       // Define an array of questions and answers
+const quizData = [
+   {
+    question: "What is the primary purpose of a CPU fan?",
+    choices: [
+        "A) To power the CPU",
+        "B) To provide an internet connection",
+        "C) To cool the CPU",
+        "D) To store data"
+    ],
+    correctAnswer: 2, // Index of the correct answer in choices array (C)
+    description: "The primary purpose of a CPU fan is to cool the CPU by dissipating heat generated during operation. This helps prevent overheating and ensures the CPU functions optimally."
+},
+
+    {
+        question: "Which networking standard operates in the 2.4 GHz frequency range?",
+        choices: [
+            "A) IEEE 802.11ac",
+            "B) IEEE 802.11n",
+            "C) IEEE 802.11g",
+            "D) IEEE 802.11a"
+        ],
+        correctAnswer: 2 // Index of the correct answer in choices array (C)
+    },
+    {
+        question: "What type of connector is commonly used for analog video output?",
+        choices: [
+            "A) HDMI",
+            "B) VGA",
+            "C) USB",
+            "D) DisplayPort"
+        ],
+        correctAnswer: 1 // Index of the correct answer in choices array (B)
+    },
+    {
+        question: "Which type of RAM is characterized by its volatile memory and must be constantly refreshed?",
+        choices: [
+            "A) DDR2",
+            "B) DDR3",
+            "C) DDR4",
+            "D) DRAM"
+        ],
+        correctAnswer: 3 // Index of the correct answer in choices array (D)
+    },
+    {
+        question: "What is the purpose of a DHCP server in a network?",
+        choices: [
+            "A) To assign IP addresses automatically",
+            "B) To protect against viruses",
+            "C) To control network access",
+            "D) To filter web content"
+        ],
+        correctAnswer: 0 // Index of the correct answer in choices array (A)
+    },
+    {
+        question: "What Windows utility can be used to create and manage hard drive partitions?",
+        choices: [
+            "A) Disk Cleanup",
+            "B) Device Manager",
+            "C) Disk Management",
+            "D) Task Manager"
+        ],
+        correctAnswer: 2 // Index of the correct answer in choices array (C)
+    },
+    {
+        question: "What is the primary purpose of a firewall in network security?",
+        choices: [
+            "A) To monitor and control incoming and outgoing network traffic",
+            "B) To improve internet speed",
+            "C) To encrypt data transmissions",
+            "D) To manage printer connections"
+        ],
+        correctAnswer: 0 // Index of the correct answer in choices array (A)
+    },
+    {
+        question: "Which encryption protocol is commonly used to secure wireless networks?",
+        choices: [
+            "A) WEP",
+            "B) WPA",
+            "C) SSL",
+            "D) TLS"
+        ],
+        correctAnswer: 1 // Index of the correct answer in choices array (B)
+    },
+    {
+        question: "What is the function of an anti-malware program?",
+        choices: [
+            "A) To organize files and folders",
+            "B) To create strong passwords",
+            "C) To detect and remove malicious software",
+            "D) To manage system updates"
+        ],
+        correctAnswer: 2 // Index of the correct answer in choices array (C)
+    },
+    {
+        question: "Which Windows feature allows you to roll back your system to a previous state?",
+        choices: [
+            "A) System Restore",
+            "B) Disk Cleanup",
+            "C) Windows Update",
+            "D) Task Scheduler"
+        ],
+        correctAnswer: 0 // Index of the correct answer in choices array (A)
+    }
+    // Add more questions here...
+];
+
+
+        // Function to shuffle the quiz data array
+function shuffleQuizData() {
+    for (let i = quizData.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [quizData[i], quizData[j]] = [quizData[j], quizData[i]];
+    }
+}
+
+// Function to load a new question
+function loadQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizData.length) {
+        const currentQuestion = quizData[currentQuestionIndex];
+        document.getElementById("question").textContent = currentQuestion.question;
+        const choices = currentQuestion.choices.slice(); // Make a copy to shuffle
+        for (let i = 0; i < 4; i++) {
+            document.getElementById("choice" + (i + 1)).textContent = choices[i];
+            document.getElementById("choice" + (i + 1)).classList.remove("correct", "incorrect");
+        }
+    } else {
+        alert("Quiz completed!");
+    }
+}
+
+// Function to check the selected answer
+function checkAnswer(selectedChoice) {
+    const currentQuestion = quizData[currentQuestionIndex];
+    const choiceButton = document.getElementById("choice" + (selectedChoice + 1));
+    const descriptionDiv = document.getElementById("description");
+    
+    if (selectedChoice === currentQuestion.correctAnswer) {
+        choiceButton.classList.add("correct");
+        
+        // Display the correct answer description
+        descriptionDiv.textContent = "Correct! Here's why: [Add your explanation here.]";
+        descriptionDiv.style.color = "#28a745"; // Optional: Change text color to green
+    } else {
+        choiceButton.classList.add("incorrect");
+        
+        // Display the correct answer description
+        descriptionDiv.textContent = "Incorrect. The correct answer is: [Add the correct answer explanation here.]";
+        descriptionDiv.style.color = "#dc3545"; // Optional: Change text color to red
+    }
+    
+    // Show the description
+    descriptionDiv.style.display = "block";
+    
+    // Trigger confetti effect when the correct answer is chosen
+    document.getElementById("confetti-container").style.display = "block"; // Show confetti
+    setTimeout(() => {
+        document.getElementById("confetti-container").style.display = "none"; // Hide confetti after 3 seconds
+    }, 3000); // Adjust the time here as needed (3 seconds in this case)
+}
+
+
+
+
+
+// Event listeners for choice buttons
+for (let i = 0; i < 4; i++) {
+    document.getElementById("choice" + (i + 1)).addEventListener("click", () => {
+        checkAnswer(i);
+    });
+}
+
+<div class="description" id="description"></div>
+
+// Initialize the confetti effect
+function initConfetti() {
+    particlesJS("confetti-container", {
+        particles: {
+            number: {
+                value: 100,
+            },
+            color: {
+                value: ["#FFD700", "#FF4500", "#008000", "#1E90FF"],
+            },
+            shape: {
+                type: "circle", // You can change this to "image" or other shapes if needed
+            },
+            size: {
+                value: 8,
+            },
+            move: {
+                direction: "bottom",
+                out_mode: "out",
+            },
+            line_linked: {
+                enable: false, // Disable lines between particles
+            },
+            interactivity: {
+                events: {
+                    onhover: {
+                        enable: false,
+                    },
+                },
+            },
+        },
+    });
+    document.getElementById("confetti-container").style.display = "none"; // Hide confetti initially
+}
+
+
+// Event listener to initialize confetti after DOM is loaded
+document.addEventListener("DOMContentLoaded", function () {
+    initConfetti();
+});
+
+
+// Event listener for the "Next" button
+document.getElementById("next").addEventListener("click", () => {
+    // Hide the description
+    document.getElementById("description").style.display = "none";
+    
+    // Load the next question
+    loadQuestion();
+});
+
+
+// Shuffle the quiz data before starting the quiz
+shuffleQuizData();
+
+// Load the initial question
+let currentQuestionIndex = -1;
+loadQuestion();
+
+
+
+    </script>
+</body>
+</html>
