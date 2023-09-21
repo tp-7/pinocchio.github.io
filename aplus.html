@@ -265,20 +265,27 @@ function checkAnswer(selectedChoice) {
     const currentQuestion = quizData[currentQuestionIndex];
     const choiceButton = document.getElementById("choice" + (selectedChoice + 1));
     const descriptionDiv = document.getElementById("description");
-    
+
     if (selectedChoice === currentQuestion.correctAnswer) {
         choiceButton.classList.add("correct");
-        
+
         // Display the correct answer description
-        descriptionDiv.textContent = "Correct! Here's why: [Add your explanation here.]";
+        descriptionDiv.textContent = "Correct! Here's why: " + currentQuestion.description;
         descriptionDiv.style.color = "#28a745"; // Optional: Change text color to green
+
+        // Show the description
+        descriptionDiv.style.display = "block";
+
+        // Trigger confetti effect when the correct answer is chosen
+        document.getElementById("confetti-container").style.display = "block"; // Show confetti
+        setTimeout(() => {
+            document.getElementById("confetti-container").style.display = "none"; // Hide confetti after 3 seconds
+        }, 3000); // Adjust the time here as needed (3 seconds in this case)
     } else {
         choiceButton.classList.add("incorrect");
-        
-        // Display the correct answer description
-        descriptionDiv.textContent = "Incorrect. The correct answer is: [Add the correct answer explanation here.]";
-        descriptionDiv.style.color = "#dc3545"; // Optional: Change text color to red
     }
+}
+
     
     // Show the description
     descriptionDiv.style.display = "block";
@@ -345,9 +352,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Event listener for the "Next" button
 document.getElementById("next").addEventListener("click", () => {
+    const descriptionDiv = document.getElementById("description");
+
     // Hide the description
-    document.getElementById("description").style.display = "none";
-    
+    descriptionDiv.style.display = "none";
+
     // Load the next question
     loadQuestion();
 });
