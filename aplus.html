@@ -109,6 +109,10 @@
         <button class="btn" id="choice4">Choice 4</button>
     </div>
     <br>
+	<div class="description" id="description"></div>
+	<br>
+	<div id="confetti-container"></div>
+	<br>
     <button class="btn" id="next">Next</button> <!-- Removed the "Submit" button -->
 
 .description {
@@ -118,7 +122,7 @@
 }
 
 	
-	<div id="confetti-container"></div>
+	
 
 
     <script>
@@ -296,8 +300,6 @@ for (let i = 0; i < 4; i++) {
         checkAnswer(i);
     });
 }
-
-<div class="description" id="description"></div>
 
 // Initialize the confetti effect
 function initConfetti() {
