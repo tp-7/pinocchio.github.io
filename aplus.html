@@ -22,7 +22,7 @@
     }
 
     .question {
-        font-size: 72px;
+        font-size: 56px;
         font-family: 'Times New Roman', Times, serif;
         font-weight: bold;
         padding: 10px;
@@ -40,7 +40,7 @@
     }
 
     .btn {
-        padding: 40px 80px;
+        padding: 20px 40px;
         background-color: #007BFF;
         color: white;
         border: none;
@@ -59,7 +59,7 @@
 
     /* Style for the "Next" button */
     #next {
-        padding: 40px 80px; /* Increased size */
+        padding: 30px 50px; /* Increased size */
         background-color: red;
         color: white;
         border: none;
@@ -132,37 +132,467 @@
 
        // Define an array of questions and answers
 const quizData = [
-   {
-    question: "What is the primary purpose of a CPU fan?",
-    choices: [
-        "A) To power the CPU",
-        "B) To provide an internet connection",
-        "C) To cool the CPU",
-        "D) To store data"
-    ],
-    correctAnswer: 2, // Index of the correct answer in choices array (C)
-    description: "The primary purpose of a CPU fan is to cool the CPU by dissipating heat generated during operation. This helps prevent overheating and ensures the CPU functions optimally."
-},
-
     {
-        question: "Which networking standard operates in the 2.4 GHz frequency range?",
+        question: "What is the function of a GPU in a computer?",
         choices: [
-            "A) IEEE 802.11ac",
-            "B) IEEE 802.11n",
-            "C) IEEE 802.11g",
-            "D) IEEE 802.11a"
+            "A) To process mathematical calculations",
+            "B) To provide internet connectivity",
+            "C) To cool down the CPU",
+            "D) To store data"
         ],
-        correctAnswer: 2 // Index of the correct answer in choices array (C)
+        correctAnswer: 0,
+        description: "A GPU (Graphics Processing Unit) is designed to process mathematical calculations, especially those related to graphics rendering and complex calculations used in tasks like 3D rendering and scientific simulations."
     },
     {
-        question: "What type of connector is commonly used for analog video output?",
+        question: "What is the purpose of an IP address?",
         choices: [
-            "A) HDMI",
-            "B) VGA",
-            "C) USB",
-            "D) DisplayPort"
+            "A) To identify a specific location on the internet",
+            "B) To prevent computer viruses",
+            "C) To speed up internet connections",
+            "D) To encrypt data transmissions"
         ],
-        correctAnswer: 1 // Index of the correct answer in choices array (B)
+        correctAnswer: 0,
+        description: "An IP address (Internet Protocol address) is used to identify a specific location or device on the internet. It allows data to be routed to the correct destination across the network."
+    },
+    {
+        question: "Which programming language is known for its use in web development and building dynamic websites?",
+        choices: [
+            "A) Java",
+            "B) C++",
+            "C) Python",
+            "D) JavaScript"
+        ],
+        correctAnswer: 3,
+        description: "JavaScript is a programming language known for its use in web development. It enables the creation of dynamic and interactive elements on websites, enhancing user experience."
+    },
+    {
+        question: "What does CPU stand for?",
+        choices: [
+            "A) Central Processing Unit",
+            "B) Computer Performance Unit",
+            "C) Critical Processing Unit",
+            "D) Central Power Unit"
+        ],
+        correctAnswer: 0,
+        description: "CPU stands for Central Processing Unit. It is the primary hardware component responsible for executing instructions and performing calculations in a computer."
+    },
+    {
+        question: "Which component of a computer is responsible for storing data long-term, even when the computer is powered off?",
+        choices: [
+            "A) RAM",
+            "B) CPU",
+            "C) Hard Drive",
+            "D) GPU"
+        ],
+        correctAnswer: 2,
+        description: "A Hard Drive is responsible for long-term storage of data in a computer. It retains data even when the computer is powered off."
+    },
+    {
+        question: "What is the main function of an operating system?",
+        choices: [
+            "A) To play video games",
+            "B) To provide internet access",
+            "C) To manage hardware and software resources",
+            "D) To design websites"
+        ],
+        correctAnswer: 2,
+        description: "The main function of an operating system is to manage hardware and software resources in a computer. It facilitates communication between hardware components and allows users to run applications."
+    },
+    {
+        question: "Which data storage technology uses a rotating magnetic disk to store information?",
+        choices: [
+            "A) SSD",
+            "B) CD-ROM",
+            "C) HDD",
+            "D) USB Flash Drive"
+        ],
+        correctAnswer: 2,
+        description: "HDD (Hard Disk Drive) is a data storage technology that uses a rotating magnetic disk to store information. It is a common type of internal storage in computers."
+    },
+    {
+        question: "What does HTML stand for in the context of web development?",
+        choices: [
+            "A) Hyper Transfer Markup Language",
+            "B) High-Throughput Multi-Language",
+            "C) Hypertext Markup Language",
+            "D) Human Translation Markup Language"
+        ],
+        correctAnswer: 2,
+        description: "HTML stands for Hypertext Markup Language. It is the standard markup language for creating web pages and web applications."
+    },
+    {
+        question: "What is the purpose of a DNS server in computer networking?",
+        choices: [
+            "A) To display websites",
+            "B) To route data packets",
+            "C) To translate domain names to IP addresses",
+            "D) To create wireless networks"
+        ],
+        correctAnswer: 2,
+        description: "A DNS (Domain Name System) server is responsible for translating human-readable domain names (e.g., www.example.com) into IP addresses that computers can use to locate and connect to web servers."
+    },
+    {
+        question: "Which programming language is often used for scientific and mathematical computing?",
+        choices: [
+            "A) Java",
+            "B) Python",
+            "C) Ruby",
+            "D) C#"
+        ],
+        correctAnswer: 1,
+        description: "Python is often used for scientific and mathematical computing due to its extensive libraries and easy-to-read syntax. It's a popular choice for tasks like data analysis and machine learning."
+    },
+    {
+        question: "What is the function of a GPU in a computer?",
+        choices: [
+            "A) To process mathematical calculations",
+            "B) To provide internet connectivity",
+            "C) To cool down the CPU",
+            "D) To store data"
+        ],
+        correctAnswer: 0,
+        description: "A GPU (Graphics Processing Unit) is designed to process mathematical calculations, especially those related to graphics rendering and complex calculations used in tasks like 3D rendering and scientific simulations."
+    },
+    {
+        question: "What is the purpose of an IP address?",
+        choices: [
+            "A) To identify a specific location on the internet",
+            "B) To prevent computer viruses",
+            "C) To speed up internet connections",
+            "D) To encrypt data transmissions"
+        ],
+        correctAnswer: 0,
+        description: "An IP address (Internet Protocol address) is used to identify a specific location or device on the internet. It allows data to be routed to the correct destination across the network."
+    },
+    {
+        question: "Which programming language is known for its use in web development and building dynamic websites?",
+        choices: [
+            "A) Java",
+            "B) C++",
+            "C) Python",
+            "D) JavaScript"
+        ],
+        correctAnswer: 3,
+        description: "JavaScript is a programming language known for its use in web development. It enables the creation of dynamic and interactive elements on websites, enhancing user experience."
+    },
+    {
+        question: "What does CPU stand for?",
+        choices: [
+            "A) Central Processing Unit",
+            "B) Computer Performance Unit",
+            "C) Critical Processing Unit",
+            "D) Central Power Unit"
+        ],
+        correctAnswer: 0,
+        description: "CPU stands for Central Processing Unit. It is the primary hardware component responsible for executing instructions and performing calculations in a computer."
+    },
+    {
+        question: "Which component of a computer is responsible for storing data long-term, even when the computer is powered off?",
+        choices: [
+            "A) RAM",
+            "B) CPU",
+            "C) Hard Drive",
+            "D) GPU"
+        ],
+        correctAnswer: 2,
+        description: "A Hard Drive is responsible for long-term storage of data in a computer. It retains data even when the computer is powered off."
+    },
+    {
+        question: "What is the main function of an operating system?",
+        choices: [
+            "A) To play video games",
+            "B) To provide internet access",
+            "C) To manage hardware and software resources",
+            "D) To design websites"
+        ],
+        correctAnswer: 2,
+        description: "The main function of an operating system is to manage hardware and software resources in a computer. It facilitates communication between hardware components and allows users to run applications."
+    },
+    {
+        question: "Which data storage technology uses a rotating magnetic disk to store information?",
+        choices: [
+            "A) SSD",
+            "B) CD-ROM",
+            "C) HDD",
+            "D) USB Flash Drive"
+        ],
+        correctAnswer: 2,
+        description: "HDD (Hard Disk Drive) is a data storage technology that uses a rotating magnetic disk to store information. It is a common type of internal storage in computers."
+    },
+    {
+        question: "What does HTML stand for in the context of web development?",
+        choices: [
+            "A) Hyper Transfer Markup Language",
+            "B) High-Throughput Multi-Language",
+            "C) Hypertext Markup Language",
+            "D) Human Translation Markup Language"
+        ],
+        correctAnswer: 2,
+        description: "HTML stands for Hypertext Markup Language. It is the standard markup language for creating web pages and web applications."
+    },
+    {
+        question: "What is the purpose of a DNS server in computer networking?",
+        choices: [
+            "A) To display websites",
+            "B) To route data packets",
+            "C) To translate domain names to IP addresses",
+            "D) To create wireless networks"
+        ],
+        correctAnswer: 2,
+        description: "A DNS (Domain Name System) server is responsible for translating human-readable domain names (e.g., www.example.com) into IP addresses that computers can use to locate and connect to web servers."
+    },
+    {
+        question: "Which programming language is often used for scientific and mathematical computing?",
+        choices: [
+            "A) Java",
+            "B) Python",
+            "C) Ruby",
+            "D) C#"
+        ],
+        correctAnswer: 1,
+        description: "Python is often used for scientific and mathematical computing due to its extensive libraries and easy-to-read syntax. It's a popular choice for tasks like data analysis and machine learning."
+    },
+    {
+        question: "What is the purpose of a router in a home network?",
+        choices: [
+            "A) To connect to the internet",
+            "B) To power the computer",
+            "C) To store files",
+            "D) To play music"
+        ],
+        correctAnswer: 0,
+        description: "A router in a home network is primarily used to connect multiple devices to the internet and manage the flow of data between them."
+    },
+    {
+        question: "What is the term for software that is distributed freely and allows users to view, modify, and distribute its source code?",
+        choices: [
+            "A) Proprietary software",
+            "B) Closed-source software",
+            "C) Open-source software",
+            "D) Commercial software"
+        ],
+        correctAnswer: 2,
+        description: "Open-source software is distributed with a license that allows users to view, modify, and distribute its source code freely. This promotes collaboration and community-driven development."
+    },
+    {
+        question: "Which computer component is responsible for displaying visual output on the monitor?",
+        choices: [
+            "A) CPU",
+            "B) GPU",
+            "C) RAM",
+            "D) Hard Drive"
+        ],
+        correctAnswer: 1,
+        description: "The GPU (Graphics Processing Unit) is responsible for rendering and displaying visual output on the computer's monitor. It handles tasks related to graphics and video."
+    },
+    {
+        question: "What does the term 'URL' stand for?",
+        choices: [
+            "A) Universal Reference Locator",
+            "B) Uniform Resource Locator",
+            "C) United Resource Locator",
+            "D) Unique Reference Locator"
+        ],
+        correctAnswer: 1,
+        description: "URL stands for Uniform Resource Locator. It is a web address used to specify the location of a resource, such as a web page or a file, on the internet."
+    },
+    {
+        question: "Which type of software is designed to detect, prevent, and remove malicious software from a computer?",
+        choices: [
+            "A) Web browser",
+            "B) Antivirus software",
+            "C) Video editing software",
+            "D) Office suite software"
+        ],
+        correctAnswer: 1,
+        description: "Antivirus software is designed to detect, prevent, and remove malicious software (malware) from a computer. It helps protect against viruses, spyware, and other threats."
+    },
+    {
+        question: "What is the purpose of a 'cookie' in web browsing?",
+        choices: [
+            "A) To track user activities and preferences",
+            "B) To delete browsing history",
+            "C) To block advertisements",
+            "D) To download files"
+        ],
+        correctAnswer: 0,
+        description: "A 'cookie' in web browsing is a small piece of data stored on a user's device. It is used to track user activities and preferences, helping websites remember user information."
+    },
+    {
+        question: "What programming language is often used for creating mobile apps for iOS devices?",
+        choices: [
+            "A) Java",
+            "B) Python",
+            "C) Swift",
+            "D) Ruby"
+        ],
+        correctAnswer: 2,
+        description: "Swift is a programming language developed by Apple and is commonly used for creating mobile apps for iOS devices such as iPhones and iPads."
+    },
+    {
+        question: "Which computer hardware component temporarily stores data that the CPU is currently working on?",
+        choices: [
+            "A) Hard Drive",
+            "B) GPU",
+            "C) RAM",
+            "D) Monitor"
+        ],
+        correctAnswer: 2,
+        description: "RAM (Random Access Memory) is a computer hardware component that temporarily stores data and instructions that the CPU is actively using. It provides fast, volatile storage."
+    },
+    {
+        question: "What is the purpose of an 'SSH' protocol?",
+        choices: [
+            "A) Secure file transfer",
+            "B) Video streaming",
+            "C) Social media access",
+            "D) Web browsing"
+        ],
+        correctAnswer: 0,
+        description: "SSH (Secure Shell) is a network protocol used for secure remote access to systems and secure file transfers. It encrypts data for secure communication."
+    },
+    {
+        question: "In computer graphics, what does 'RGB' stand for?",
+        choices: [
+            "A) Realistic Graphics Buffer",
+            "B) Red, Green, Blue",
+            "C) Rapid Graphics Building",
+            "D) Random Graphics Behavior"
+        ],
+        correctAnswer: 1,
+        description: "'RGB' stands for Red, Green, Blue. It is a color model used in computer graphics to represent and display a wide range of colors by combining these primary colors."
+    },
+    {
+        question: "What is the primary function of an operating system in a computer?",
+        choices: [
+            "A) To perform mathematical calculations",
+            "B) To manage hardware resources and provide user interfaces",
+            "C) To design websites",
+            "D) To print documents"
+        ],
+        correctAnswer: 1,
+        description: "The primary function of an operating system is to manage hardware resources, provide user interfaces, and coordinate system activities."
+    },
+    {
+        question: "What type of storage device has no moving parts and provides fast data access?",
+        choices: [
+            "A) Hard Drive (HDD)",
+            "B) Solid State Drive (SSD)",
+            "C) Optical Drive",
+            "D) Floppy Disk"
+        ],
+        correctAnswer: 1,
+        description: "A Solid State Drive (SSD) is a storage device with no moving parts, offering fast data access and improved durability compared to traditional Hard Disk Drives (HDDs)."
+    },
+    {
+        question: "What does 'HTTP' stand for in the context of web browsing?",
+        choices: [
+            "A) Hyperlink Text Transfer Protocol",
+            "B) Hypertext Transmission Transport Protocol",
+            "C) Hyper Transfer Text Protocol",
+            "D) Hypertext Transfer Protocol"
+        ],
+        correctAnswer: 3,
+        description: "'HTTP' stands for Hypertext Transfer Protocol. It is a protocol used for transferring data over the World Wide Web, defining how messages are formatted and transmitted."
+    },
+    {
+        question: "What is the purpose of a 'motherboard' in a computer?",
+        choices: [
+            "A) To generate electricity",
+            "B) To connect to the internet",
+            "C) To store data",
+            "D) To host and connect other hardware components"
+        ],
+        correctAnswer: 3,
+        description: "A motherboard in a computer serves as the main circuit board, hosting and connecting various hardware components, including the CPU, RAM, and more."
+    },
+    {
+        question: "Which programming language is known for its use in web development and is often used for both front-end and back-end development?",
+        choices: [
+            "A) Java",
+            "B) Python",
+            "C) JavaScript",
+            "D) C++"
+        ],
+        correctAnswer: 2,
+        description: "JavaScript is a programming language commonly used in web development for both front-end and back-end tasks. It enables interactive and dynamic web pages."
+    },
+    {
+        question: "What does 'HTML' stand for in web development?",
+        choices: [
+            "A) Hyper Transfer Markup Language",
+            "B) Hypertext Transfer Machine Language",
+            "C) Hyperlink and Text Markup Language",
+            "D) Hypertext Markup Language"
+        ],
+        correctAnswer: 3,
+        description: "'HTML' stands for Hypertext Markup Language. It is the standard markup language used for creating web pages and specifying their structure and content."
+    },
+    {
+        question: "What is the main purpose of an 'IP address' in computer networking?",
+        choices: [
+            "A) To format text documents",
+            "B) To identify a specific computer or device on a network",
+            "C) To send emails",
+            "D) To create graphics"
+        ],
+        correctAnswer: 1,
+        description: "The main purpose of an IP address in computer networking is to identify a specific computer or device on a network, enabling data routing."
+    },
+    {
+        question: "What does 'CPU' stand for in the context of computing?",
+        choices: [
+            "A) Central Processing Unit",
+            "B) Computer Performance Unit",
+            "C) Central Power Unit",
+            "D) Control Processing Unit"
+        ],
+        correctAnswer: 0,
+        description: "'CPU' stands for Central Processing Unit. It is the primary component responsible for executing instructions and performing calculations in a computer."
+    },
+    {
+        question: "Which type of software allows users to create and edit text documents?",
+        choices: [
+            "A) Photo editing software",
+            "B) Web browser",
+            "C) Word processing software",
+            "D) Video editing software"
+        ],
+        correctAnswer: 2,
+        description: "Word processing software allows users to create and edit text documents. Examples include Microsoft Word and Google Docs."
+    },
+    {
+        question: "What is the purpose of 'RAM' in a computer?",
+        choices: [
+            "A) To store long-term data",
+            "B) To provide internet connectivity",
+            "C) To print documents",
+            "D) To temporarily store data for active programs"
+        ],
+        correctAnswer: 3,
+        description: "RAM (Random Access Memory) in a computer is used to temporarily store data that active programs are currently using. It provides fast, volatile storage."
+    },
+    {
+        question: "What does CPU stand for in the context of computer hardware?",
+        choices: [
+            "A) Central Processing Unit",
+            "B) Central Power Unit",
+            "C) Computer Performance Unit",
+            "D) Control Processing Unit"
+        ],
+        correctAnswer: 0,
+        description: "CPU stands for Central Processing Unit, which is the primary component responsible for executing instructions and performing calculations in a computer."
+    },
+    {
+        question: "What is the purpose of a POST test during the computer boot process?",
+        choices: [
+            "A) To load the operating system",
+            "B) To check and initialize hardware components",
+            "C) To connect to the internet",
+            "D) To perform a memory test"
+        ],
+        correctAnswer: 1,
+        description: "The POST (Power-On Self-Test) is a diagnostic process that checks and initializes hardware components during the computer boot process."
     },
     {
         question: "Which type of RAM is characterized by its volatile memory and must be constantly refreshed?",
@@ -172,70 +602,201 @@ const quizData = [
             "C) DDR4",
             "D) DRAM"
         ],
-        correctAnswer: 3 // Index of the correct answer in choices array (D)
+        correctAnswer: 3,
+        description: "DRAM (Dynamic Random Access Memory) is characterized by its volatile memory, which means it needs constant refreshing to retain data."
     },
     {
-        question: "What is the purpose of a DHCP server in a network?",
+        question: "What is the primary function of a BIOS (Basic Input/Output System) in a computer?",
         choices: [
-            "A) To assign IP addresses automatically",
-            "B) To protect against viruses",
-            "C) To control network access",
-            "D) To filter web content"
+            "A) To manage hardware resources",
+            "B) To control the operating system",
+            "C) To browse the internet",
+            "D) To create and edit documents"
         ],
-        correctAnswer: 0 // Index of the correct answer in choices array (A)
+        correctAnswer: 0,
+        description: "The primary function of BIOS (Basic Input/Output System) is to manage hardware resources and provide a bridge between hardware and software."
     },
     {
-        question: "What Windows utility can be used to create and manage hard drive partitions?",
+        question: "Which of the following is a volatile storage device in a computer?",
         choices: [
-            "A) Disk Cleanup",
-            "B) Device Manager",
-            "C) Disk Management",
-            "D) Task Manager"
+            "A) Hard Drive (HDD)",
+            "B) Solid State Drive (SSD)",
+            "C) CD-ROM Drive",
+            "D) RAM (Random Access Memory)"
         ],
-        correctAnswer: 2 // Index of the correct answer in choices array (C)
+        correctAnswer: 3,
+        description: "RAM (Random Access Memory) is a volatile storage device in a computer, providing fast but temporary storage for active data and programs."
     },
     {
-        question: "What is the primary purpose of a firewall in network security?",
+        question: "What is the purpose of a CMOS battery in a computer?",
         choices: [
-            "A) To monitor and control incoming and outgoing network traffic",
-            "B) To improve internet speed",
-            "C) To encrypt data transmissions",
+            "A) To power the CPU",
+            "B) To store BIOS settings",
+            "C) To connect to external devices",
+            "D) To manage network connections"
+        ],
+        correctAnswer: 1,
+        description: "A CMOS battery in a computer is used to retain BIOS settings, including date and time, when the computer is powered off."
+    },
+    {
+        question: "What type of connector is commonly used for analog video output?",
+        choices: [
+            "A) HDMI",
+            "B) VGA",
+            "C) USB",
+            "D) DisplayPort"
+        ],
+        correctAnswer: 1,
+        description: "VGA (Video Graphics Array) is commonly used for analog video output, typically found on older computer systems and monitors."
+    },
+    {
+        question: "Which type of display technology uses organic compounds that emit light when an electric current is applied?",
+        choices: [
+            "A) CRT",
+            "B) LCD",
+            "C) LED",
+            "D) OLED"
+        ],
+        correctAnswer: 3,
+        description: "OLED (Organic Light-Emitting Diode) display technology uses organic compounds that emit light when an electric current is applied, resulting in vibrant and energy-efficient displays."
+    },
+    {
+        question: "What is the purpose of a UPS (Uninterruptible Power Supply) in a computer setup?",
+        choices: [
+            "A) To connect to the internet",
+            "B) To provide temporary power during outages",
+            "C) To improve network performance",
+            "D) To scan for viruses"
+        ],
+        correctAnswer: 1,
+        description: "A UPS (Uninterruptible Power Supply) is used to provide temporary power to a computer or equipment during power outages, ensuring data integrity and preventing sudden shutdowns."
+    },
+    {
+        question: "What does RAID stand for in the context of data storage?",
+        choices: [
+            "A) Redundant Array of Independent Disks",
+            "B) Rapid Access to Information Devices",
+            "C) Random Allocation of Integrated Data",
+            "D) Read and Insert Data"
+        ],
+        correctAnswer: 0,
+        description: "RAID stands for Redundant Array of Independent Disks, which is a technology used to combine multiple hard drives for data redundancy and performance improvement."
+    },
+     {
+        question: "What is the purpose of an I/O shield in a computer case?",
+        choices: [
+            "A) To improve Wi-Fi signal strength",
+            "B) To protect the CPU from overheating",
+            "C) To shield against electromagnetic interference",
+            "D) To increase hard drive storage capacity"
+        ],
+        correctAnswer: 2,
+        description: "An I/O shield (Input/Output shield) is used in a computer case to shield against electromagnetic interference and to provide openings for external ports like USB, audio, and networking."
+    },
+    {
+        question: "What is the maximum data transfer rate of USB 3.0?",
+        choices: [
+            "A) 480 Mbps",
+            "B) 1 Gbps",
+            "C) 5 Gbps",
+            "D) 10 Gbps"
+        ],
+        correctAnswer: 2,
+        description: "USB 3.0 has a maximum data transfer rate of 5 Gbps (gigabits per second), making it significantly faster than USB 2.0."
+    },
+    {
+        question: "Which type of firewall operates at the network layer of the OSI model?",
+        choices: [
+            "A) Proxy firewall",
+            "B) Stateful firewall",
+            "C) Application firewall",
+            "D) Packet-filtering firewall"
+        ],
+        correctAnswer: 3,
+        description: "A packet-filtering firewall operates at the network layer (Layer 3) of the OSI model and filters traffic based on source and destination IP addresses, as well as ports."
+    },
+    {
+        question: "What is the primary function of a GPU (Graphics Processing Unit) in a computer?",
+        choices: [
+            "A) To process network traffic",
+            "B) To perform complex calculations",
+            "C) To generate images and video for display",
             "D) To manage printer connections"
         ],
-        correctAnswer: 0 // Index of the correct answer in choices array (A)
+        correctAnswer: 2,
+        description: "The primary function of a GPU (Graphics Processing Unit) is to generate images and video for display, making it essential for graphics-intensive tasks like gaming and video editing."
     },
     {
-        question: "Which encryption protocol is commonly used to secure wireless networks?",
+        question: "What is the purpose of a KVM switch in a computer setup?",
         choices: [
-            "A) WEP",
-            "B) WPA",
-            "C) SSL",
-            "D) TLS"
+            "A) To switch between different keyboard layouts",
+            "B) To provide remote access to a computer",
+            "C) To control multiple computers with a single set of peripherals",
+            "D) To encrypt data transmissions"
         ],
-        correctAnswer: 1 // Index of the correct answer in choices array (B)
+        correctAnswer: 2,
+        description: "A KVM (Keyboard, Video, Mouse) switch allows users to control multiple computers using a single set of peripherals (keyboard, monitor, and mouse)."
     },
     {
-        question: "What is the function of an anti-malware program?",
+        question: "Which RAID level provides both data striping and mirroring for redundancy and performance?",
         choices: [
-            "A) To organize files and folders",
-            "B) To create strong passwords",
-            "C) To detect and remove malicious software",
-            "D) To manage system updates"
+            "A) RAID 0",
+            "B) RAID 1",
+            "C) RAID 5",
+            "D) RAID 10"
         ],
-        correctAnswer: 2 // Index of the correct answer in choices array (C)
+        correctAnswer: 3,
+        description: "RAID 10 (or RAID 1+0) provides both data striping and mirroring, combining the benefits of RAID 0 and RAID 1 for improved performance and redundancy."
     },
     {
-        question: "Which Windows feature allows you to roll back your system to a previous state?",
+        question: "What type of cable is commonly used for connecting a router to a cable modem?",
         choices: [
-            "A) System Restore",
-            "B) Disk Cleanup",
-            "C) Windows Update",
-            "D) Task Scheduler"
+            "A) HDMI cable",
+            "B) USB cable",
+            "C) Ethernet cable",
+            "D) VGA cable"
         ],
-        correctAnswer: 0 // Index of the correct answer in choices array (A)
-    }
+        correctAnswer: 2,
+        description: "An Ethernet cable is commonly used to connect a router to a cable modem, allowing data to flow between them."
+    },
+    {
+        question: "Which display technology consumes the least amount of power when displaying a static image?",
+        choices: [
+            "A) CRT",
+            "B) LCD",
+            "C) LED",
+            "D) E-ink"
+        ],
+        correctAnswer: 3,
+        description: "E-ink (Electronic Ink) displays consume the least amount of power when displaying a static image, making them ideal for e-readers and certain other devices."
+    },
+    {
+        question: "What is the primary purpose of a UPS (Uninterruptible Power Supply) in a computer setup?",
+        choices: [
+            "A) To connect to the internet",
+            "B) To provide temporary power during outages",
+            "C) To improve network performance",
+            "D) To scan for viruses"
+        ],
+        correctAnswer: 1,
+        description: "A UPS (Uninterruptible Power Supply) is used to provide temporary power to a computer or equipment during power outages, ensuring data integrity and preventing sudden shutdowns."
+    },
+    {
+        question: "What does WPA2 stand for in the context of wireless security?",
+        choices: [
+            "A) Wireless Public Access 2",
+            "B) Wi-Fi Protected Access 2",
+            "C) Wireless Personal Area 2",
+            "D) Wide Area Protection 2"
+        ],
+        correctAnswer: 1,
+        description: "WPA2 stands for Wi-Fi Protected Access 2, which is a security protocol used to secure wireless networks."
+    },
+    
+
     // Add more questions here...
 ];
+
 
 
         // Function to shuffle the quiz data array
