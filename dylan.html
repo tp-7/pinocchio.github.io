@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #randomNumber {
+            font-size: 400px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="randomNumber"></div>
+
+    <script>
+        function generateRandomNumber() {
+            // Generate a random number between 1 and 100,000
+            const randomNumber = Math.floor(Math.random() * 100000) + 1;
+            
+            // Update the content of the element with the generated number
+            document.getElementById("randomNumber").textContent = randomNumber;
+        }
+
+        // Initial call to generate the number
+        generateRandomNumber();
+
+        // Set interval to change the number every 15 seconds
+        setInterval(generateRandomNumber, 15000);
+    </script>
+</body>
+</html>
