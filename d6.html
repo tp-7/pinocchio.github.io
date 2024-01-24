@@ -30,16 +30,7 @@
             padding: 20px;
         }
 
-        @keyframes rollAnimation {
-            0% { transform: rotate(0deg); }
-            25% { transform: rotate(180deg); }
-            50% { transform: rotate(360deg); }
-            75% { transform: rotate(180deg); }
-            100% { transform: rotate(0deg); }
-        }
-
         #confetti {
-            display: none;
             position: fixed;
             width: 100%;
             height: 100%;
@@ -52,10 +43,10 @@
         .confetti-piece {
             width: 10px;
             height: 10px;
-            background-color: #e44d26;
             position: absolute;
             border-radius: 50%;
             animation: confettiAnimation 2s ease-out infinite;
+            transform-origin: center bottom;
         }
 
         @keyframes confettiAnimation {
@@ -75,7 +66,7 @@
     <script>
         function rollD6() {
             // Trigger confetti
-            document.getElementById("confetti").innerHTML = generateConfetti();
+            generateConfetti();
 
             // Generate a random number between 1 and 6
             const randomNumber = Math.floor(Math.random() * 6) + 1;
@@ -97,7 +88,8 @@
             for (let i = 0; i < 100; i++) {
                 const confettiPiece = document.createElement('div');
                 confettiPiece.className = 'confetti-piece';
-                confettiPiece.style.left = `${Math.random() * 100}vw`;
+                confettiPiece.style.left = `${Math.random() * window.innerWidth}px`;
+                confettiPiece.style.backgroundColor = getRandomColor();
                 confettiPiece.style.animationDelay = `${Math.random()}s`;
                 confettiContainer.appendChild(confettiPiece);
             }
@@ -109,8 +101,15 @@
             setTimeout(() => {
                 confettiContainer.style.display = 'none';
             }, 2000);
+        }
 
-            return confettiContainer.innerHTML;
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
         }
     </script>
 </body>
