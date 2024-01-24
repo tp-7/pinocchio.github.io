@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alternate Numbers Generator</title>
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #alternateNumber {
+            font-size: 400px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="alternateNumber"></div>
+
+    <script>
+        function alternateNumbers() {
+            // Array of numbers to alternate between
+            const numbers = [69, 420];
+
+            // Get the element
+            const alternateNumberElement = document.getElementById("alternateNumber");
+
+            // Get the current displayed number
+            const currentNumber = parseInt(alternateNumberElement.textContent);
+
+            // Find the index of the current number in the array
+            const currentIndex = numbers.indexOf(currentNumber);
+
+            // Calculate the next index in a circular manner
+            const nextIndex = (currentIndex + 1) % numbers.length;
+
+            // Get the next number from the array
+            const nextNumber = numbers[nextIndex];
+
+            // Update the content of the element with the next number
+            alternateNumberElement.textContent = nextNumber;
+        }
+
+        // Initial call to set the starting number
+        alternateNumbers();
+
+        // Set interval to change the number every 3 seconds
+        setInterval(alternateNumbers, 3000);
+    </script>
+</body>
+</html>
