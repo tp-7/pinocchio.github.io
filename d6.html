@@ -22,7 +22,6 @@
             background-color: #4CAF50;
             color: white;
             border-radius: 5px;
-            animation: rollAnimation 1s ease-out;
         }
 
         #result {
@@ -73,12 +72,6 @@
 
             // Update the content of the result element with the generated number
             document.getElementById("result").textContent = `Result: ${randomNumber}`;
-
-            // Reset the animation
-            const rollButton = document.getElementById("rollButton");
-            rollButton.style.animation = 'none';
-            void rollButton.offsetWidth; // Trigger reflow
-            rollButton.style.animation = null;
         }
 
         function generateConfetti() {
