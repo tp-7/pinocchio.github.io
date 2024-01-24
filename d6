@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller</title>
+    <style>
+        body {
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #rollButton {
+            font-size: 20px;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            animation: rollAnimation 1s ease-out;
+        }
+
+        #result {
+            font-size: 50px;
+            padding: 20px;
+        }
+
+        @keyframes rollAnimation {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(180deg); }
+            50% { transform: rotate(360deg); }
+            75% { transform: rotate(180deg); }
+            100% { transform: rotate(0deg); }
+        }
+    </style>
+</head>
+<body>
+    <button id="rollButton" onclick="rollD6()">Roll D6</button>
+    <div id="result"></div>
+
+    <script>
+        function rollD6() {
+            // Generate a random number between 1 and 6
+            const randomNumber = Math.floor(Math.random() * 6) + 1;
+
+            // Update the content of the result element with the generated number
+            document.getElementById("result").textContent = `Result: ${randomNumber}`;
+        }
+    </script>
+</body>
+</html>
