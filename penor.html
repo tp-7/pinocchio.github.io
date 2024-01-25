@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        #mainNumber {
+            font-size: 200px;
+            color: black;
+        }
+
+        #staticNumbers {
+            display: flex;
+            justify-content: space-around;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 22px;
+            color: black;
+            background-color: #fff;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainNumber"></div>
+    <div id="staticNumbers"></div>
+
+    <script>
+        // Function to generate a random number between 1 and 20
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 20) + 1;
+        }
+
+        // Function to update the main generated number and static numbers
+        function updateNumbers() {
+            const mainNumberElement = document.getElementById('mainNumber');
+            const staticNumbersElement = document.getElementById('staticNumbers');
+
+            // Get the current main number
+            const currentMainNumber = parseInt(mainNumberElement.innerText) || 0;
+
+            // Generate a new random number
+            const newRandomNumber = generateRandomNumber();
+
+            // Update the main number
+            mainNumberElement.innerText = newRandomNumber;
+
+            // Update the static numbers
+            const staticNumbers = staticNumbersElement.children;
+
+            for (let i = staticNumbers.length - 1; i > 0; i--) {
+                const prevStaticNumber = staticNumbers[i - 1].innerText;
+                staticNumbers[i].innerText = prevStaticNumber;
+            }
+
+            staticNumbers[0].innerText = currentMainNumber;
+        }
+
+        // Update numbers every 10 seconds
+        setInterval(updateNumbers, 10000);
+
+        // Initial update
+        updateNumbers();
+    </script>
+</body>
+</html>
