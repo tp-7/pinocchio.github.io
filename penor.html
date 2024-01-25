@@ -13,6 +13,10 @@
             justify-content: center;
             height: 100vh;
             background-color: #f0f0f0;
+             background-image: url('https://feeds.abplive.com/onecms/images/uploaded-images/2023/05/09/f5289920070c9934fccc8f8b775093311683617610291613_original.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
         }
 
         #mainNumber {
@@ -32,6 +36,7 @@
             box-sizing: border-box;
             position: fixed;
             bottom: 0;
+            
         }
     </style>
 </head>
@@ -66,7 +71,7 @@
             }
         }
 
-        setInterval(updateNumbers, 4000);
+        setInterval(updateNumbers, 1000);
 
         // Initial update
         updateNumbers();
