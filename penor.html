@@ -66,10 +66,13 @@
             }
         }
 
-        setInterval(updateNumbers, 5000);
+        setInterval(updateNumbers, 10000);
 
         // Initial update
         updateNumbers();
+
+        // Clear the initial content of the staticNumbersContainer
+        document.getElementById('staticNumbersContainer').innerHTML = '';
     </script>
 </body>
 </html>
