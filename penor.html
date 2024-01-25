@@ -21,7 +21,7 @@
             margin-bottom: 20px;
         }
 
-        #staticNumbers {
+        #staticNumbersContainer {
             display: flex;
             justify-content: space-around;
             width: 100%;
@@ -30,12 +30,14 @@
             background-color: #fff;
             padding: 10px;
             box-sizing: border-box;
+            position: fixed;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
     <div id="mainNumber"></div>
-    <div id="staticNumbers"></div>
+    <div id="staticNumbersContainer"></div>
 
     <script>
         function generateRandomNumber() {
@@ -44,26 +46,30 @@
 
         function updateNumbers() {
             const mainNumberElement = document.getElementById('mainNumber');
-            const staticNumbersElement = document.getElementById('staticNumbers');
+            const staticNumbersContainer = document.getElementById('staticNumbersContainer');
 
             const currentMainNumber = parseInt(mainNumberElement.innerText) || 0;
             const newRandomNumber = generateRandomNumber();
 
             mainNumberElement.innerText = newRandomNumber;
 
-            const staticNumbers = staticNumbersElement.children;
+            // Create a new span element for the static number
+            const staticNumberSpan = document.createElement('span');
+            staticNumberSpan.innerText = currentMainNumber;
 
-            for (let i = staticNumbers.length - 1; i > 0; i--) {
-                const prevStaticNumber = staticNumbers[i - 1].innerText;
-                staticNumbers[i].innerText = prevStaticNumber;
+            // Add the new static number to the container
+            staticNumbersContainer.appendChild(staticNumberSpan);
+
+            // If there are more than 5 static numbers, remove the oldest one
+            if (staticNumbersContainer.children.length > 5) {
+                staticNumbersContainer.removeChild(staticNumbersContainer.children[0]);
             }
-
-            staticNumbers[0].innerText = currentMainNumber;
         }
 
-        setInterval(updateNumbers, 4000);
+        setInterval(updateNumbers, 10000);
 
-        updateNumbers(); // Initial update
+        // Initial update
+        updateNumbers();
     </script>
 </body>
 </html>
