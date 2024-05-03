@@ -40,12 +40,17 @@
             margin: 0 auto;
             max-width: 100%;
             height: auto;
-        }
-       .grid .image-container {
+        .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); /* Set minimum and maximum width for columns */
+    gap: 20px;
+}
+
+.grid .image-container {
     position: relative;
-    padding-top: 20px;
-    width: 255px; /* Set width to match desired image width */
+    width: 100%; /* Ensure each image container takes full width of the grid column */
     height: 400px; /* Set height to match desired image height */
+    overflow: hidden; /* Ensure images don't overflow their container */
 }
 
 .grid .image-container img {
@@ -73,6 +78,7 @@
     padding: 5px; /* Added padding */
     box-sizing: border-box; /* Ensures padding is included in the width */
 }
+
     </style>
 </head>
 <body>
