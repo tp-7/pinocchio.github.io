@@ -41,27 +41,26 @@
             max-width: 100%;
             height: auto;
         }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        .grid .image-container {
-            position: relative;
-            padding-top: 20px;
-            width: 255px; /* Set width to match desired image width */
-            height: 400px; /* Set height to match desired image height */
-        }
-        .grid .image-container img {
-            width: 100%;
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-        .grid .image-container img:hover {
-            transform: scale(1.05);
-        }
-        .grid .image-container .title {
+       .grid .image-container {
+    position: relative;
+    padding-top: 20px;
+    width: 255px; /* Set width to match desired image width */
+    height: 400px; /* Set height to match desired image height */
+}
+
+.grid .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Maintain aspect ratio and fill the container */
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.grid .image-container img:hover {
+    transform: scale(1.05);
+}
+
+.grid .image-container .title {
     position: absolute;
     font-size: 15px;
     top: -40px; /* Adjusted position */
@@ -73,7 +72,7 @@
     text-shadow: 2px 2px 2px #000000;
     padding: 5px; /* Added padding */
     box-sizing: border-box; /* Ensures padding is included in the width */
-        }
+}
     </style>
 </head>
 <body>
