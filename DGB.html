@@ -21,8 +21,8 @@
             font-size: 60px;
             text-align: center;
             color: #ffffff;
-            padding: 5px 0; /* Add padding only to the top and bottom */
-            margin: 0; /* Remove any default margin */
+            padding: 5px 0;
+            margin: 0;
         }
         .description {
             font-family: "Times New Roman", serif;
@@ -30,68 +30,24 @@
             margin-bottom: 40px;
             text-align: center;
             color: #ffffff;
-            padding: 20px; /* Add padding for better readability */
-        }
-        .description img {
-            display: block;
-            margin: 0 auto;
-            max-width: 100%;
-            height: auto;
+            padding: 20px;
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
-        .grid .image-container {
-            position: relative;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            width: 100%;
-            height: auto;
-        }
-        .grid .image-container img {
-            width: 100%;
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s ease-in-out;
-        }
-        .grid .image-container img:hover {
-            transform: scale(1.05);
-        }
-        .grid .image-container .title {
-            position: absolute;
-            font-size: 15px;
-            top: -40px; /* Adjusted position */
-            left: 0;
-            width: 100%;
+        .image-container {
             text-align: center;
-            font-weight: bold;
-            color: #ffffff;
-            text-shadow: 2px 2px 2px #000000;
-            padding: 5px; /* Added padding */
-            box-sizing: border-box; /* Ensures padding is included in the width */
-            background-color: rgba(0, 0, 0, 0.5); /* Light gray background color */
         }
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 40px;
-            }
-            .description {
-                font-size: 16px;
-                padding: 10px;
-            }
-            .grid {
-                gap: 10px;
-            }
-            .grid .image-container {
-                padding-top: 10px;
-                padding-bottom: 10px;
-            }
-            .grid .image-container .title {
-                font-size: 12px;
-                top: -30px;
-            }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        .title {
+            font-size: 18px;
+            margin-top: 10px;
+            color: #ffffff;
         }
     </style>
 </head>
@@ -104,40 +60,64 @@
         </div>
         <div class="grid">
             <div class="image-container">
+                <p class="title">A Graduation Tribute</p>
+                <a href="https://bafybeibj4fto63mlbmfhd7qirzqkaiqjklm4lx3a4k5y576quymqti5i3a.ipfs.w3s.link/A%20Graduation%20Tribute.pdf" target="_blank">
+                    <img src="https://bafybeiflbzycqqmp4s6kcmrtlbypmbu463zetdrpvr36l5vmpbdka4cqvi.ipfs.w3s.link/A%20Graduation%20Tribute%20300X388.jpg" alt="A Graduation Tribute">
+                </a>
+            </div>
+            <div class="image-container">
+                <p class="title">Family Ties</p>
+                <a href="https://bafybeicctt57x44efpioksjergaylwckzvw7fvfs37dtxz2ylgrxczx7su.ipfs.w3s.link/Family%20Ties.pdf" target="_blank">
+                    <img src="https://bafybeifxkifm5wrxnxnujsotetguv3ikhwpmnjzietuidptwwcuwlbw67a.ipfs.w3s.link/Family%20Ties%20300x388.jpg" alt="Family Ties">
+                </a>
+            </div>
+            <div class="image-container">
+                <p class="title">I’m The US Flag</p>
+                <a href="https://bafybeig4p6ov4m2tvbw6ye4l6wmcstxog7vyone34hurx26xmb2blll7xu.ipfs.w3s.link/im%20the%20us%20flag.pdf" target="_blank">
+                    <img src="https://bafybeih3rgtsifiy5wj3xbkhhs5i5xn2jbrt7w5hdtecojpoks73pxbxkq.ipfs.w3s.link/im%20the%20us%20flag%20300x388.jpg" alt="I’m The US Flag">
+                </a>
+            </div>
+            <div class="image-container">
+                <p class="title">Music And Blessings</p>
+                <a href="https://bafybeiacnhmh6noukq5zbswmrwslg4jbbmop3t5rm5hpfv3eudibronyym.ipfs.w3s.link/Music%20and%20blessings.pdf" target="_blank">
+                    <img src="https://bafybeia7hy5nj37w7jh43pxpr5qyujyzkzsorxtlhvyslo7d5kezuqtapy.ipfs.w3s.link/Music%20and%20blessings%20300x388.jpg" alt="Music And Blessings">
+                </a>
+            </div>
+            <div class="image-container">
                 <p class="title">Rainbow Wishes</p>
-                <a href="https://bafybeicjyox6dex6lqw74rxf4c3rihba5lmnk6jkvyxiclacw7jugax3zq.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.46%20AM.png" target="_blank"><img src="https://bafybeicjyox6dex6lqw74rxf4c3rihba5lmnk6jkvyxiclacw7jugax3zq.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.46%20AM.png" alt=""></a>
+                <a href="https://bafybeierydgmdj6e4ml5vzapmhdo4unb4qn4bxalsavvxvol7mz2qi6jpu.ipfs.w3s.link/Rainbow%20Wishes.pdf" target="_blank">
+                    <img src="https://bafybeidkmsa6sykrxyztgebgaozvbga3kxoshhcelhbwr34kzu44ca6wpm.ipfs.w3s.link/Rainbow%20Wishes%20300x388%20Page%201.jpg" alt="Rainbow Wishes">
+                </a>
             </div>
             <div class="image-container">
                 <p class="title">The Wish</p>
-                <a href="https://bafybeiamisbomabykkua35xkqz2r3a65cj55ja6oexwpioxnk52htcqemi.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.04%20AM.png" target="_blank"><img src="https://bafybeiamisbomabykkua35xkqz2r3a65cj55ja6oexwpioxnk52htcqemi.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.04%20AM.png" alt=""></a>
+                <a href="https://bafybeib2tp76ort4msaatzzdbw7uhrvmiscsf5eslwf7jpwns74qjbrec4.ipfs.w3s.link/The%20Wish.pdf" target="_blank">
+                    <img src="https://bafybeidcz4ioxgcoyafkkmoyeegetivcxiw4ltlqqp4udacbvxn6cvgpcm.ipfs.w3s.link/The%20Wish%20300X388.jpg" alt="The Wish">
+                </a>
             </div>
             <div class="image-container">
-                <p class="title">Rainbow Wishes</p>
-                <a href="https://bafybeiervkrjjruzbvihr7yikpzkug6hxjaq7ijrgy6nfk54byj6mvhp7u.ipfs.w3s.link/Screenshot%202024-05-03%20at%2011.04.58%20AM.png" target="_blank"><img src="https://bafybeiervkrjjruzbvihr7yikpzkug6hxjaq7ijrgy6nfk54byj6mvhp7u.ipfs.w3s.link/Screenshot%202024-05-03%20at%2011.04.58%20AM.png" alt=""></a>
+                <p class="title">To Empower Freedoms Future</p>
+                <a href="https://bafybeifua75eseok4dr7ye2qtigkcjyly6bhiol22cixugokqtzkujmuzq.ipfs.w3s.link/To%20Empower%20Freedoms%20Future.pdf" target="_blank">
+                    <img src="https://bafybeiguco33uqgyutmmrvnzurz3cqxpa53znp7v7l6tp47zqfw5nvlkkq.ipfs.w3s.link/To%20Empower%20Freedoms%20Future%20300x388.jpg" alt="To Empower Freedoms Future">
+                </a>
             </div>
             <div class="image-container">
-                <p class="title">The Wish</p>
-                <a href="https://bafybeicjyox6dex6lqw74rxf4c3rihba5lmnk6jkvyxiclacw7jugax3zq.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.46%20AM.png" target="_blank"><img src="https://bafybeicjyox6dex6lqw74rxf4c3rihba5lmnk6jkvyxiclacw7jugax3zq.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.46%20AM.png" alt=""></a>
+                <p class="title">USA Grateful</p>
+                <a href="https://bafybeiduxthf22txo2hfthbnh2qejhc6xsy77yylrzbq5ryb55ie7p7fve.ipfs.w3s.link/USA%20Grateful.pdf" target="_blank">
+                    <img src="https://bafybeib5z724b5lzqt4q7ng4uxadfl6wwuaqaobamhfyqyxcxitsothypu.ipfs.w3s.link/USA%20Grateful%20300x388.jpg" alt="USA Grateful">
+                </a>
             </div>
             <div class="image-container">
-                <p class="title">Rainbow Wishes</p>
-                <a href="https://bafybeiamisbomabykkua35xkqz2r3a65cj55ja6oexwpioxnk52htcqemi.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.04%20AM.png" target="_blank"><img src="https://bafybeiamisbomabykkua35xkqz2r3a65cj55ja6oexwpioxnk52htcqemi.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.04%20AM.png" alt=""></a>
+                <p class="title">You The Power Of One</p>
+                <a href="https://bafybeihpkpidd7wjnpasgadtuqeosklkkyztu23yuyubamwkwkvxlnopji.ipfs.w3s.link/You%20The%20Power%20Of%20One.pdf" target="_blank">
+                    <img src="https://bafybeif46zy7jjuzgui5ve3fft3l5ztcr2435l6w5bvr357rqucin4g2jy.ipfs.w3s.link/You%20The%20Power%20Of%20One%20300x388.jpg" alt="You The Power Of One">
+                </a>
             </div>
             <div class="image-container">
-                <p class="title">The Wish</p>
-                <a href="https://bafybeiervkrjjruzbvihr7yikpzkug6hxjaq7ijrgy6nfk54byj6mvhp7u.ipfs.w3s.link/Screenshot%202024-05-03%20at%2011.04.58%20AM.png" target="_blank"><img src="https://bafybeiervkrjjruzbvihr7yikpzkug6hxjaq7ijrgy6nfk54byj6mvhp7u.ipfs.w3s.link/Screenshot%202024-05-03%20at%2011.04.58%20AM.png" alt=""></a>
-            </div>
-            <div class="image-container">
-                <p class="title">Rainbow Wishes</p>
-                <a href="https://bafybeicjyox6dex6lqw74rxf4c3rihba5lmnk6jkvyxiclacw7jugax3zq.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.46%20AM.png" target="_blank"><img src="https://bafybeicjyox6dex6lqw74rxf4c3rihba5lmnk6jkvyxiclacw7jugax3zq.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.46%20AM.png" alt=""></a>
-            </div>
-            <div class="image-container">
-                <p class="title">The Wish</p>
-                <a href="https://bafybeiamisbomabykkua35xkqz2r3a65cj55ja6oexwpioxnk52htcqemi.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.04%20AM.png" target="_blank"><img src="https://bafybeiamisbomabykkua35xkqz2r3a65cj55ja6oexwpioxnk52htcqemi.ipfs.w3s.link/Screenshot%202024-05-03%20at%209.49.04%20AM.png" alt=""></a>
-            </div>
-            <div class="image-container">
-                <p class="title">Rainbow Wishes</p>
-                <a href="https://bafybeiervkrjjruzbvihr7yikpzkug6hxjaq7ijrgy6nfk54byj6mvhp7u.ipfs.w3s.link/Screenshot%202024-05-03%20at%2011.04.58%20AM.png" target="_blank"><img src="https://bafybeiervkrjjruzbvihr7yikpzkug6hxjaq7ijrgy6nfk54byj6mvhp7u.ipfs.w3s.link/Screenshot%202024-05-03%20at%2011.04.58%20AM.png" alt=""></a>
+                <p class="title">You’re A Blessing</p>
+                <a href="https://bafybeiew44mdoc27rwyjtrlaa4ctn6paoesi3utpjvejps7txjuifez7u4.ipfs.w3s.link/You're%20a%20blessing.pdf" target="_blank">
+                    <img src="https://bafybeibzf3dpqfdcvge6rycq5dybez6tyt4ktp2qs6op5rxsee6ckvhyhi.ipfs.w3s.link/You're%20a%20blessing%20300x388.jpg" alt="You’re A Blessing">
+                </a>
             </div>
         </div>
     </div>
