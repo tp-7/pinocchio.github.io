@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color ASCII Art with Bitcoin Hash (5:7 Aspect Ratio)</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #039112;
+            font-family: monospace;
+            white-space: pre;
+            font-size: px; 9 /* Adjust font size to tweak overall size */
+            line-height: 0.95; /* Adjust this to correct vertical scaling */
+        }
+        #ascii-art {
+            line-height: 0.75; /* Ensure the line-height ratio is applied here as well */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Upload the image and select the character width -->
+<input type="file" id="upload-image" accept="image/*">
+<label for="char-width">Character Width:</label>
+<input type="number" id="char-width" value="55" min="10" max="200"> <!-- Lowering the default width for 5:7 ratio -->
+<button id="generate-btn">Generate ASCII Art</button>
+
+<div id="ascii-art"></div>
+
+<script>
+    window.onload = function () {
+        // Default Variables
+        let charWidth = 50; // Adjusted character width for 5:7 ratio
+        let btcHash = ''; // This will hold the Bitcoin hash to be used as characters
+
+        // Sample block data (you can load this from the JSON file dynamically)
+        const blockData = [
+            {
+                "block_num": "428950",
+                "btc_output": 8531.02869956,
+                "btc_hash": "000000000000000000214a5d4931c6db215416ba5750e40ea7863c2c0d8e3586"
+            },
+            {
+                "block_num": "428951",
+                "btc_output": 42310.44398073,
+                "btc_hash": "0000000000000000001983f1875f6ea2fbcadf4bc0964ff9593d984831790bf3"
+            },
+            {
+                "block_num": "428952",
+                "btc_output": 8789.323171,
+                "btc_hash": "000000000000000000ae844f2f7ffa690edb105767f95af108d37da5fa62de81"
+            }
+        ];
+
+        // Use the first block's hash for the example (you can select other hashes too)
+        btcHash = blockData[0].btc_hash;
+
+        // Handle file upload
+        let img = null;
+        document.getElementById('upload-image').addEventListener('change', handleImageUpload);
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                img = new Image();
+                img.src = URL.createObjectURL(file);
+                img.onload = function () {
+                    generateAsciiArt(); // Ensure the function is called after the image loads
+                };
+            }
+        }
+
+        // Main function to generate ASCII art
+        function generateAsciiArt() {
+            if (!img) {
+                alert("Please upload an image first.");
+                return;
+            }
+
+            // Get the character width value from the input field
+            charWidth = parseInt(document.getElementById('char-width').value);
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            // Calculate new height based on aspect ratio and target character width (5:7 ratio)
+            const aspectRatio = img.height / img.width;
+            const charHeight = Math.round((charWidth * aspectRatio) * (5 / 7)); // Adjusted to 5:7 ratio
+
+            // Set canvas size to target width/height
+            canvas.width = charWidth;
+            canvas.height = charHeight;
+
+            // Draw image to canvas
+            context.drawImage(img, 0, 0, charWidth, charHeight);
+
+            // Get image data from canvas
+            const imageData = context.getImageData(0, 0, charWidth, charHeight);
+            const pixels = imageData.data;
+
+            let asciiArt = '';
+            let hashIndex = 0;
+
+            for (let y = 0; y < charHeight; y++) {
+                for (let x = 0; x < charWidth; x++) {
+                    const offset = (y * charWidth + x) * 4; // Each pixel has 4 values: R, G, B, A
+                    const r = pixels[offset];
+                    const g = pixels[offset + 1];
+                    const b = pixels[offset + 2];
+
+                    // Get the current character from the Bitcoin hash
+                    const hashChar = btcHash[hashIndex];
+                    hashIndex = (hashIndex + 1) % btcHash.length; // Loop the hash characters
+
+                    // Append character with RGB color styling
+                    asciiArt += `<span style="color: rgb(${r},${g},${b})">${hashChar}</span>`;
+                }
+                asciiArt += '<br>'; // Newline after each row
+            }
+
+            // Display the ASCII art
+            document.getElementById('ascii-art').innerHTML = asciiArt;
+        }
+
+        // Attach click event to the button
+        document.getElementById('generate-btn').addEventListener('click', generateAsciiArt);
+    }
+</script>
+
+</body>
+</html>
