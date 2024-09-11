@@ -3,12 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Compressor</title>
+    <title>🌸 Ultra Image Compressor 🌸</title>
+    <style>
+        body {
+            background-color: #ffeff9;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: #333;
+        }
+        h1 {
+            color: #ff66b3;
+            text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.5);
+        }
+        input, button {
+            margin: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            border: none;
+            font-size: 18px;
+        }
+        button {
+            background-color: #ff99cc;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff66b3;
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        /* Sparkles animation */
+        @keyframes sparkle {
+            0% { transform: translateY(-10px); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(10px); opacity: 0; }
+        }
+        .sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: gold;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkle 1s ease infinite;
+        }
+    </style>
 </head>
 <body>
-    <h1>Image Compressor</h1>
+    <h1>🌸 Ultra Image Compressor 🌸</h1>
     <input type="file" id="fileInput" multiple accept="image/*">
-    <button id="compressBtn">Compress Images</button>
+    <button id="compressBtn">✨ Compress Images ✨</button>
     <div id="output"></div>
 
     <script>
@@ -16,10 +65,31 @@
         const compressBtn = document.getElementById('compressBtn');
         const output = document.getElementById('output');
 
+        // Debugging: Checking if fileInput is working
+        fileInput.addEventListener('change', () => {
+            console.log('Files selected:', fileInput.files);
+        });
+
+        // Function to create sparkles animation
+        const createSparkles = () => {
+            for (let i = 0; i < 10; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = `${Math.random() * window.innerWidth}px`;
+                sparkle.style.top = `${Math.random() * window.innerHeight}px`;
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        };
+
         // Function to compress images
-        const compressImage = (file, quality = 0.01, format = 'image/webp') => {
-            return new Promise((resolve) => {
+        const compressImage = (file, quality = 0.002, format = 'image/webp') => {
+            return new Promise((resolve, reject) => {
                 const reader = new FileReader();
+                
+                // Debugging: Check if the reader is working
+                console.log('Reading file:', file.name);
+
                 reader.onload = (event) => {
                     const img = new Image();
                     img.src = event.target.result;
@@ -27,24 +97,38 @@
                         const canvas = document.createElement('canvas');
                         const ctx = canvas.getContext('2d');
 
-                        // Set canvas dimensions to match the image size (400x560)
+                        // Set canvas dimensions (400x560)
                         canvas.width = 400;
                         canvas.height = 560;
 
                         // Draw the image on the canvas
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-                        // Compress the image using WebP or JPEG with specified quality
+                        // Debugging: Check if image is drawn on canvas
+                        console.log('Image drawn on canvas:', file.name);
+
+                        // Apply aggressive compression
                         canvas.toBlob((blob) => {
-                            const compressedFile = new File([blob], file.name, {
-                                type: format,
-                                lastModified: Date.now()
-                            });
-                            resolve(compressedFile);
+                            if (blob) {
+                                const compressedFile = new File([blob], file.name, {
+                                    type: format,
+                                    lastModified: Date.now()
+                                });
+                                resolve(compressedFile);
+                                console.log('Compression successful:', compressedFile.size, 'bytes');
+                            } else {
+                                reject('Compression failed for ' + file.name);
+                            }
                         }, format, quality);
                     };
                 };
                 reader.readAsDataURL(file);
+
+                // Error handling for FileReader
+                reader.onerror = (error) => {
+                    console.error('FileReader error:', error);
+                    reject('FileReader failed to read file: ' + file.name);
+                };
             });
         };
 
@@ -54,6 +138,7 @@
             link.href = URL.createObjectURL(file);
             link.download = file.name;
             link.click();
+            URL.revokeObjectURL(link.href); // Clean up the URL object
         };
 
         compressBtn.addEventListener('click', async () => {
@@ -65,18 +150,28 @@
                 return;
             }
 
+            createSparkles(); // Add sparkles for fun!
+
             for (let file of files) {
-                // Compress each image with extreme compression (99%)
-                const compressedFile = await compressImage(file, 0.01, 'image/webp');
+                try {
+                    console.log('Compressing file:', file.name); // Debugging log
 
-                // Display the compressed image size
-                const fileSizeInKB = (compressedFile.size / 1024).toFixed(2);
-                const result = document.createElement('p');
-                result.textContent = `${file.name}: ${fileSizeInKB} KB`;
-                output.appendChild(result);
+                    const compressedFile = await compressImage(file, 0.002, 'image/webp');
 
-                // Download the compressed image
-                downloadImage(compressedFile);
+                    // Display the compressed image size
+                    const fileSizeInKB = (compressedFile.size / 1024).toFixed(2);
+                    const result = document.createElement('p');
+                    result.textContent = `${file.name}: ${fileSizeInKB} KB`;
+                    output.appendChild(result);
+
+                    // Download the compressed image
+                    downloadImage(compressedFile);
+                } catch (err) {
+                    console.error(err);
+                    const errorMsg = document.createElement('p');
+                    errorMsg.textContent = `Failed to compress ${file.name}: ${err}`;
+                    output.appendChild(errorMsg);
+                }
             }
         });
     </script>
