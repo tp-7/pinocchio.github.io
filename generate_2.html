@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color ASCII Art with Bitcoin Hash (5:7 Aspect Ratio)</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #039112;
+            font-family: monospace;
+            white-space: pre;
+            font-size: 9px; /* Adjust font size to tweak overall size */
+            line-height: 0.95; /* Adjust this to correct vertical scaling */
+        }
+        .ascii-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 100px; /* Increased gap to ensure more space between the two windows */
+        }
+        .ascii-art-window {
+            width: 45%;
+            line-height: 0.75;
+            padding: 30px; /* Increased padding for more space around the images */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Upload images and set character width for two ASCII art windows -->
+<div>
+    <!-- Controls for first image -->
+    <input type="file" id="upload-image1" accept="image/*">
+    <label for="char-width1">Character Width (Image 1):</label>
+    <input type="number" id="char-width1" value="55" min="10" max="200">
+</div>
+<div>
+    <!-- Controls for second image -->
+    <input type="file" id="upload-image2" accept="image/*">
+    <label for="char-width2">Character Width (Image 2):</label>
+    <input type="number" id="char-width2" value="55" min="10" max="200">
+</div>
+
+<button id="generate-btn">Generate ASCII Art for Both</button>
+
+<div class="ascii-container">
+    <!-- First window for ASCII art -->
+    <div id="ascii-art1" class="ascii-art-window"></div>
+    <!-- Second window for ASCII art -->
+    <div id="ascii-art2" class="ascii-art-window"></div>
+</div>
+
+<script>
+    window.onload = function () {
+        let btcHash = '';
+
+        // Sample block data for testing
+        const blockData = [
+            {
+                "block_num": "428950",
+                "btc_output": 8531.02869956,
+                "btc_hash": "000000000000000000214a5d4931c6db215416ba5750e40ea7863c2c0d8e3586"
+            },
+            {
+                "block_num": "428951",
+                "btc_output": 42310.44398073,
+                "btc_hash": "0000000000000000001983f1875f6ea2fbcadf4bc0964ff9593d984831790bf3"
+            }
+        ];
+
+        btcHash = blockData[0].btc_hash;
+
+        let img1 = null;
+        let img2 = null;
+
+        // Handle image upload for the first image
+        document.getElementById('upload-image1').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                img1 = new Image();
+                img1.src = URL.createObjectURL(file);
+            }
+        });
+
+        // Handle image upload for the second image
+        document.getElementById('upload-image2').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                img2 = new Image();
+                img2.src = URL.createObjectURL(file);
+            }
+        });
+
+        // Function to generate ASCII art for an image
+        function generateAsciiArt(img, charWidth, btcHash, targetDivId) {
+            if (!img) {
+                alert("Please upload an image.");
+                return;
+            }
+
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            const aspectRatio = img.height / img.width;
+            const charHeight = Math.round((charWidth * aspectRatio) * (5 / 7));
+
+            canvas.width = charWidth;
+            canvas.height = charHeight;
+            context.drawImage(img, 0, 0, charWidth, charHeight);
+
+            const imageData = context.getImageData(0, 0, charWidth, charHeight);
+            const pixels = imageData.data;
+
+            let asciiArt = '';
+            let hashIndex = 0;
+
+            for (let y = 0; y < charHeight; y++) {
+                for (let x = 0; x < charWidth; x++) {
+                    const offset = (y * charWidth + x) * 4;
+                    const r = pixels[offset];
+                    const g = pixels[offset + 1];
+                    const b = pixels[offset + 2];
+
+                    const hashChar = btcHash[hashIndex];
+                    hashIndex = (hashIndex + 1) % btcHash.length;
+
+                    asciiArt += `<span style="color: rgb(${r},${g},${b})">${hashChar}</span>`;
+                }
+                asciiArt += '<br>';
+            }
+
+            document.getElementById(targetDivId).innerHTML = asciiArt;
+        }
+
+        // Attach click event to generate ASCII art for both images
+        document.getElementById('generate-btn').addEventListener('click', function () {
+            const charWidth1 = parseInt(document.getElementById('char-width1').value);
+            const charWidth2 = parseInt(document.getElementById('char-width2').value);
+
+            // Generate ASCII art for the first image
+            generateAsciiArt(img1, charWidth1, blockData[0].btc_hash, 'ascii-art1');
+
+            // Generate ASCII art for the second image
+            generateAsciiArt(img2, charWidth2, blockData[1].btc_hash, 'ascii-art2');
+        });
+    }
+</script>
+
+</body>
+</html>
