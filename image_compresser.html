@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Compressor</title>
+</head>
+<body>
+    <h1>Image Compressor</h1>
+    <input type="file" id="fileInput" multiple accept="image/*">
+    <button id="compressBtn">Compress Images</button>
+    <div id="output"></div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const compressBtn = document.getElementById('compressBtn');
+        const output = document.getElementById('output');
+
+        // Function to compress images
+        const compressImage = (file, quality = 0.01, format = 'image/webp') => {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+
+                        // Set canvas dimensions to match the image size (400x560)
+                        canvas.width = 400;
+                        canvas.height = 560;
+
+                        // Draw the image on the canvas
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                        // Compress the image using WebP or JPEG with specified quality
+                        canvas.toBlob((blob) => {
+                            const compressedFile = new File([blob], file.name, {
+                                type: format,
+                                lastModified: Date.now()
+                            });
+                            resolve(compressedFile);
+                        }, format, quality);
+                    };
+                };
+                reader.readAsDataURL(file);
+            });
+        };
+
+        // Function to download the compressed image
+        const downloadImage = (file) => {
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(file);
+            link.download = file.name;
+            link.click();
+        };
+
+        compressBtn.addEventListener('click', async () => {
+            const files = fileInput.files;
+            output.innerHTML = '';
+
+            if (files.length === 0) {
+                alert('Please select images to compress.');
+                return;
+            }
+
+            for (let file of files) {
+                // Compress each image with extreme compression (99%)
+                const compressedFile = await compressImage(file, 0.01, 'image/webp');
+
+                // Display the compressed image size
+                const fileSizeInKB = (compressedFile.size / 1024).toFixed(2);
+                const result = document.createElement('p');
+                result.textContent = `${file.name}: ${fileSizeInKB} KB`;
+                output.appendChild(result);
+
+                // Download the compressed image
+                downloadImage(compressedFile);
+            }
+        });
+    </script>
+</body>
+</html>
