@@ -42,6 +42,10 @@
 <body>
     <h1>🌸 Ultra Image Compressor 🌸</h1>
     <input type="file" id="fileInput" multiple accept="image/*">
+    <label for="quality">Quality (lower = more compression):</label>
+    <input type="number" id="quality" min="0.001" max="1" step="0.001" value="0.001">
+    <label for="scale">Scale Factor (e.g., 0.5 = half size):</label>
+    <input type="number" id="scale" min="0.1" max="1" step="0.1" value="0.5">
     <button id="compressBtn">✨ Compress Images ✨</button>
     <div id="output"></div>
 
@@ -49,12 +53,14 @@
         const fileInput = document.getElementById('fileInput');
         const compressBtn = document.getElementById('compressBtn');
         const output = document.getElementById('output');
+        const qualityInput = document.getElementById('quality');
+        const scaleInput = document.getElementById('scale');
 
         // Function to compress images
-        const compressImage = (file, quality = 0.002, format = 'image/webp') => {
+        const compressImage = (file, quality, scale, format = 'image/webp') => {
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
-                
+
                 reader.onload = (event) => {
                     const img = new Image();
                     img.src = event.target.result;
@@ -62,14 +68,18 @@
                         const canvas = document.createElement('canvas');
                         const ctx = canvas.getContext('2d');
 
-                        // Set canvas dimensions (400x560)
-                        canvas.width = 400;
-                        canvas.height = 560;
+                        // Adjust dimensions based on scale factor
+                        const scaledWidth = img.width * scale;
+                        const scaledHeight = img.height * scale;
+
+                        // Set canvas dimensions
+                        canvas.width = scaledWidth;
+                        canvas.height = scaledHeight;
 
                         // Draw the image on the canvas
-                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        ctx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
 
-                        // Apply aggressive compression
+                        // Apply extreme compression
                         canvas.toBlob((blob) => {
                             if (blob) {
                                 const compressedFile = new File([blob], file.name, {
@@ -103,6 +113,8 @@
 
         compressBtn.addEventListener('click', async () => {
             const files = fileInput.files;
+            const quality = parseFloat(qualityInput.value);
+            const scale = parseFloat(scaleInput.value);
             output.innerHTML = '';
 
             if (files.length === 0) {
@@ -118,7 +130,7 @@
                 output.appendChild(originalSizeText);
 
                 try {
-                    const compressedFile = await compressImage(file, 0.002, 'image/webp');
+                    const compressedFile = await compressImage(file, quality, scale, 'image/webp');
 
                     // Display the compressed image size
                     const compressedFileSizeInKB = (compressedFile.size / 1024).toFixed(2);
