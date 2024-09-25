@@ -12,7 +12,7 @@
     <div id="output"></div>
 
     <!-- Include Upscaler.js -->
-    <script src="https://unpkg.com/upscaler"></script>
+    <script src="https://unpkg.com/upscaler@latest"></script>
     <script>
         const imageInput = document.getElementById('imageInput');
         const upscaleButton = document.getElementById('upscaleButton');
@@ -26,7 +26,8 @@
                 return;
             }
 
-            const upscaler = new Upscaler();
+            // Ensure Upscaler.js is defined
+            const upscaler = new Upscaler(); // Instantiate the Upscaler class
 
             for (const file of files) {
                 const img = await loadImage(URL.createObjectURL(file));
