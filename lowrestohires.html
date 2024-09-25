@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Image Upscaler with Upscaler.js</title>
+</head>
+<body>
+    <h1>Machine Learning Image Upscaler (Upscaler.js)</h1>
+    <input type="file" id="imageInput" accept="image/*" multiple>
+    <button id="upscaleButton">Upscale Images</button>
+    <div id="output"></div>
+
+    <!-- Include Upscaler.js -->
+    <script src="https://unpkg.com/upscaler"></script>
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const upscaleButton = document.getElementById('upscaleButton');
+        const outputDiv = document.getElementById('output');
+
+        upscaleButton.addEventListener('click', async () => {
+            const files = imageInput.files;
+
+            if (files.length === 0) {
+                alert('Please upload images');
+                return;
+            }
+
+            const upscaler = new Upscaler();
+
+            for (const file of files) {
+                const img = await loadImage(URL.createObjectURL(file));
+                const upscaledImage = await upscaler.upscale(img);
+                displayImage(upscaledImage);
+            }
+        });
+
+        function loadImage(url) {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.src = url;
+            });
+        }
+
+        function displayImage(img) {
+            const imgElement = document.createElement('img');
+            imgElement.src = img.src;
+            imgElement.style.width = '300px';  // Display preview at a smaller size
+            outputDiv.appendChild(imgElement);
+        }
+    </script>
+</body>
+</html>
