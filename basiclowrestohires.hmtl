@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Image Upscaler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #output img {
+            margin: 10px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            background-color: #f4f4f4;
+        }
+        #output {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Basic Image Upscaler (No ML)</h1>
+    <input type="file" id="imageInput" accept="image/*" multiple>
+    <br>
+    <label for="scaleFactor">Upscale Factor:</label>
+    <input type="number" id="scaleFactor" value="2" min="1" step="0.1">
+    <br>
+    <button id="upscaleButton">Upscale Images</button>
+    <div id="output"></div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const scaleFactorInput = document.getElementById('scaleFactor');
+        const upscaleButton = document.getElementById('upscaleButton');
+        const outputDiv = document.getElementById('output');
+
+        upscaleButton.addEventListener('click', async () => {
+            const scaleFactor = parseFloat(scaleFactorInput.value);
+            const files = imageInput.files;
+
+            if (files.length === 0) {
+                alert('Please upload images');
+                return;
+            }
+
+            // Clear previous output
+            outputDiv.innerHTML = '';
+
+            for (const file of files) {
+                const img = await loadImage(URL.createObjectURL(file));
+                const upscaledCanvas = upscaleImage(img, scaleFactor);
+                const upscaledImageURL = upscaledCanvas.toDataURL('image/jpeg');
+                displayImage(upscaledImageURL);
+            }
+        });
+
+        function loadImage(url) {
+            return new Promise((resolve, reject) => {
+                const img = new Image();
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = url;
+            });
+        }
+
+        function upscaleImage(image, scaleFactor) {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            // Set the new size of the canvas to be upscaled
+            canvas.width = image.width * scaleFactor;
+            canvas.height = image.height * scaleFactor;
+
+            // Draw the upscaled image on the canvas
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+            return canvas;
+        }
+
+        function displayImage(url) {
+            const imgElement = document.createElement('img');
+            imgElement.src = url;
+            imgElement.style.width = '300px'; // Show preview in smaller size
+            outputDiv.appendChild(imgElement);
+        }
+    </script>
+</body>
+</html>
