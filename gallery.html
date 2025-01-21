@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <title>Artwork Gallery</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
-  <style>
+ <style>
     body {
       background-color: #eef7f0;
+      font-family: Arial, sans-serif;
     }
     
     header {
@@ -25,6 +26,7 @@
       list-style-type: none;
       margin: 0;
       padding: 0;
+      text-align: center;
     }
     
     nav ul li {
@@ -47,8 +49,8 @@
     
     .gallery {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Default to 3 columns */
-      justify-content: center;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Dynamically adjust to available space */
+      justify-items: center;
       gap: 20px;
       padding: 20px;
     }
@@ -59,20 +61,25 @@
     }
     
     .gallery-item {
-      flex: 0 0 auto;
-      max-width: 300px;
+      max-width: 100%;
+      width: 100%;
+      text-align: center;
     }
     
     .gallery-item img {
       width: 100%;
       height: auto;
+      max-height: 400px; /* Limit max height for images */
+      object-fit: cover; /* Ensure images fill the space without distorting */
     }
     
     .gallery-item .description {
       margin-top: 10px;
-      text-align: center;
+      font-size: 16px;
+      color: #333;
     }
-    
+
+    /* Media query for smaller screens */
     @media only screen and (max-width: 768px) {
       .gallery {
         grid-template-columns: 1fr; /* Single column on smaller screens */
@@ -83,6 +90,7 @@
       }
     }
 </style>
+
 
 </head>
 <body>
