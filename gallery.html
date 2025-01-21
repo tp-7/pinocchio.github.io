@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Artwork Gallery</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
- <style>
+<style>
     body {
       background-color: #eef7f0;
       font-family: Arial, sans-serif;
@@ -49,28 +49,23 @@
     
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Dynamically adjust to available space */
+      grid-template-columns: repeat(3, 1fr); /* 3 columns */
       justify-items: center;
       gap: 20px;
       padding: 20px;
     }
 
-    /* Staggered rows for alternating layout */
-    .gallery-item:nth-child(5n+1) {
-      grid-column: span 2; /* Make every 5th row span 2 columns */
-    }
-    
+    /* Ensure all gallery items have the same size */
     .gallery-item {
-      max-width: 100%;
-      width: 100%;
+      width: 400px;
+      height: 560px;
       text-align: center;
     }
     
     .gallery-item img {
       width: 100%;
-      height: auto;
-      max-height: 400px; /* Limit max height for images */
-      object-fit: cover; /* Ensure images fill the space without distorting */
+      height: 100%;
+      object-fit: cover; /* Ensure the image covers the area without distortion */
     }
     
     .gallery-item .description {
@@ -85,11 +80,13 @@
         grid-template-columns: 1fr; /* Single column on smaller screens */
       }
 
-      .gallery-item:nth-child(5n+1) {
-        grid-column: span 1; /* Reset span on small screens */
+      .gallery-item {
+        width: 100%; /* Let the items take the full width on smaller screens */
+        height: auto; /* Let the height adjust accordingly */
       }
     }
 </style>
+
 
 
 </head>
