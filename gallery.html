@@ -47,10 +47,15 @@
     
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(3, 1fr); /* Default to 3 columns */
       justify-content: center;
       gap: 20px;
       padding: 20px;
+    }
+
+    /* Staggered rows for alternating layout */
+    .gallery-item:nth-child(5n+1) {
+      grid-column: span 2; /* Make every 5th row span 2 columns */
     }
     
     .gallery-item {
@@ -70,10 +75,15 @@
     
     @media only screen and (max-width: 768px) {
       .gallery {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+      }
+
+      .gallery-item:nth-child(5n+1) {
+        grid-column: span 1; /* Reset span on small screens */
       }
     }
-  </style>
+</style>
+
 </head>
 <body>
   <header>
