@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Artwork Gallery</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
-<style>
+  <style>
     body {
       background-color: #eef7f0;
       font-family: Arial, sans-serif;
@@ -55,17 +54,17 @@
       padding: 20px;
     }
 
-    /* Ensure all gallery items have the same size */
     .gallery-item {
       width: 400px;
       height: 560px;
       text-align: center;
+      margin-bottom: 20px; /* Space between rows */
     }
     
     .gallery-item img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ensure the image covers the area without distortion */
+      object-fit: cover;
     }
     
     .gallery-item .description {
@@ -74,21 +73,12 @@
       color: #333;
     }
 
-    /* Media query for smaller screens */
     @media only screen and (max-width: 768px) {
       .gallery {
-        grid-template-columns: 1fr; /* Single column on smaller screens */
-      }
-
-      .gallery-item {
-        width: 100%; /* Let the items take the full width on smaller screens */
-        height: auto; /* Let the height adjust accordingly */
+        grid-template-columns: 1fr; /* Single column for smaller screens */
       }
     }
-</style>
-
-
-
+  </style>
 </head>
 <body>
   <header>
@@ -101,26 +91,26 @@
     </nav>
   </header>
   
-<div class="gallery">
-  <div class="gallery-item">
-    <a href="https://tokenscan.io/asset/PEPEZARD" target="_blank">
-      <img src="https://media4.giphy.com/media/tUeqQWi5PfPFivujAt/giphy.gif" alt="PEPEZARD">
-    </a>
-    <div class="description">
-      <a href="https://tokenscan.io/asset/PEPEZARD" target="_blank">PEPEZARD</a>
+  <div class="gallery">
+    <div class="gallery-item">
+      <a href="https://tokenscan.io/asset/PEPEZARD" target="_blank">
+        <img src="https://media4.giphy.com/media/tUeqQWi5PfPFivujAt/giphy.gif" alt="PEPEZARD">
+      </a>
+      <div class="description">
+        <a href="https://tokenscan.io/asset/PEPEZARD" target="_blank">PEPEZARD</a>
+      </div>
     </div>
-  </div>
 
-  <div class="gallery-item">
-    <a href="https://tokenscan.io/asset/FAKGOTHICPEP" target="_blank">
-      <img src="https://tokenscan.io/img/cards/FAKGOTHICPEP.png" alt="FAKGOTHICPEP">
-    </a>
-    <div class="description">
-      <a href="https://tokenscan.io/asset/FAKGOTHICPEP" target="_blank">FAKGOTHICPEP</a>
+    <div class="gallery-item">
+      <a href="https://tokenscan.io/asset/FAKGOTHICPEP" target="_blank">
+        <img src="https://tokenscan.io/img/cards/FAKGOTHICPEP.png" alt="FAKGOTHICPEP">
+      </a>
+      <div class="description">
+        <a href="https://tokenscan.io/asset/FAKGOTHICPEP" target="_blank">FAKGOTHICPEP</a>
+      </div>
     </div>
-  </div>
 
-  <div class="gallery-item">
+   <div class="gallery-item">
     <a href="https://tokenscan.io/asset/FAKGOTHICPEP.LAFAKAGOTHIC" target="_blank">
       <img src="https://i.imgur.com/bTYF8fj.png" alt="FAKGOTHICPEP.LAFAKAGOTHIC">
     </a>
@@ -355,15 +345,14 @@
   </div>
 </div>
 
-<div class="gallery-item">
-  <a href="https://tokenscan.io/asset/TRUMPEPEUSA" target="_blank">
-    <img src="https://bafybeidmm26nyri6cqo4fkcodj5wis2ydkpigqhglss33flqqcml4vw5cq.ipfs.w3s.link/TRUMPEPEUSA.png" alt="TRUMPEPEUSA">
-  </a>
-  <div class="description">
-    <a href="https://tokenscan.io/asset/TRUMPEPEUSA" target="_blank">TRUMPEPEUSA</a>
+    <div class="gallery-item">
+      <a href="https://tokenscan.io/asset/TRUMPEPEUSA" target="_blank">
+        <img src="https://bafybeidmm26nyri6cqo4fkcodj5wis2ydkpigqhglss33flqqcml4vw5cq.ipfs.w3s.link/TRUMPEPEUSA.png" alt="TRUMPEPEUSA">
+      </a>
+      <div class="description">
+        <a href="https://tokenscan.io/asset/TRUMPEPEUSA" target="_blank">TRUMPEPEUSA</a>
+      </div>
+    </div>
   </div>
-</div>
-
-
 </body>
 </html>
